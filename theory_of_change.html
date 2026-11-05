@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steel Warriors Theory of Change</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<!--
+  All content comes from the JSON block with id="toc-data" at the bottom of this file.
+    statement   the overarching impact statement (from Steel Warriors' theory of change notes)
+    outcomes    the six organisational impact outcomes, in Steel Warriors' wording
+    programmes  the nine programmes and their primary outcomes
+    nodes       the boxes on the map ("today" holds current facts from the website)
+    research    the evidence base; each source lists the map boxes it supports in "nodes"
+    indicators  the measures
+  Values typed into the tracker are saved in this browser only; use "Export CSV" to share them.
+-->
+<style>
+:root{
+  --red:#BE1C25; --red-tint:#F6E4E5; --ink:#080809; --ink-2:#1F1F21; --paper:#FAFAF8; --stone:#EBEBE8; --grey:#ACACAC;
+  --bg:var(--paper); --surface:#FFFFFF; --text:var(--ink); --muted:#5C5C60; --line:#DADAD7; --band:#F2F2EF;
+  --edge:#9A9A9E; --edge-dim:#E4E4E1; --ok:#1F6B3A; --ok-tint:#E3F1E8; --warn:#8A5A00; --warn-tint:#FBEFD2;
+  --shadow:0 1px 2px rgba(8,8,9,.08),0 6px 18px rgba(8,8,9,.06); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#080809; --surface:#1F1F21; --text:#FAFAF8; --muted:#ACACAC; --line:#343437; --band:#111113; --red-tint:#3A1518;
+  --edge:#77777C; --edge-dim:#2A2A2D; --ok:#6FCF97; --ok-tint:#14301F; --warn:#F2C14E; --warn-tint:#3A2E0E; --shadow:none; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#080809; --surface:#1F1F21; --text:#FAFAF8; --muted:#ACACAC; --line:#343437; --band:#111113; --red-tint:#3A1518;
+  --edge:#77777C; --edge-dim:#2A2A2D; --ok:#6FCF97; --ok-tint:#14301F; --warn:#F2C14E; --warn-tint:#3A2E0E; --shadow:none; color-scheme:dark;}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:58px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "Noto Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input{font:inherit;color:inherit} button{cursor:pointer}
+a{color:var(--red)}
+.wrap{max-width:1500px;margin:0 auto;padding-inline:max(16px,3vw)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+
+header.hero{background:var(--ink);color:var(--paper);border-bottom:4px solid var(--red)}
+.hero .wrap{padding-block:30px 26px;display:flex;flex-wrap:wrap;gap:18px 48px;align-items:flex-end;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:.14em;font-size:12px;text-transform:uppercase;color:var(--grey)} .brand b{color:var(--red)}
+h1{margin:8px 0 10px;font-size:clamp(28px,4.4vw,46px);line-height:1.08;font-weight:800;letter-spacing:-.015em}
+h1 em{font-style:normal;color:var(--red)}
+.hero .stmt{margin:0 0 6px;max-width:70ch;color:var(--paper);font-size:18px;font-weight:700;line-height:1.4}
+.hero p{margin:0;max-width:70ch;color:#D6D6D3;font-size:15px}
+.tag{font-weight:800;letter-spacing:.16em;font-size:12px;color:var(--grey);text-transform:uppercase}
+.flag{display:inline-block;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid #4a4a4e;color:var(--grey);padding:3px 9px;border-radius:2px}
+
+nav.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:2px;overflow-x:auto}
+nav.top a{padding:13px 14px;font-weight:700;font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
+nav.top a:hover{color:var(--text)} nav.top a.on{color:var(--text);border-bottom-color:var(--red)}
+
+.today{background:var(--band);border-bottom:1px solid var(--line)}
+.today .wrap{padding-block:18px 14px}
+.today h2{margin:0 0 10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:800}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.fact{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--red);border-radius:3px;padding:10px 14px}
+.fact b{display:block;font-size:28px;line-height:1.1;font-weight:800}
+.fact span{font-size:13px;color:var(--muted)}
+.src{margin:10px 0 0;font-size:12px;color:var(--muted)}
+
+section.sec{padding-block:42px 26px} section.alt{background:var(--band)}
+.kick{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+h2.h{margin:4px 0 6px;font-size:clamp(22px,3vw,30px);line-height:1.2;font-weight:800;letter-spacing:-.01em}
+h3.sub{margin:24px 0 10px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lede{margin:0 0 18px;color:var(--muted);max-width:78ch}
+
+.bar{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;margin:0 0 12px}
+.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.group>.lbl{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.chip{border:1px solid var(--line);background:var(--surface);padding:5px 12px;border-radius:999px;font-size:13px;font-weight:500;transition:.15s}
+.chip:hover{border-color:var(--red)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{background:var(--red);border-color:var(--red)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{background:var(--red);border-color:var(--red)}}
+
+.profile{margin:0 0 16px}
+.profile .card{border-top-width:5px}
+.profile h3{font-size:20px;margin:0 0 2px} .profile .ptag{margin:0 0 12px;font-weight:700;color:var(--red)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 28px;margin:0}
+.pgrid dt{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pgrid dd{margin:2px 0 0;color:var(--text);font-size:14px} .pgrid .wide{grid-column:1/-1}
+.pgrid ul{margin:2px 0 0;padding-left:18px} .pgrid li{margin:3px 0}
+.pgrid li b{font-weight:700}
+.pgrid summary{cursor:pointer;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--red);padding:2px 0}
+.pgrid details{border-top:1px solid var(--line);padding-top:8px;font-size:14px}
+.profile .notice{margin-top:12px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 0;transition:grid-template-columns .25s ease;align-items:start}
+.stage.open{grid-template-columns:minmax(0,1fr) 400px;gap:20px}
+.scroller{overflow-x:auto;padding:8px 4px}
+.map{position:relative;min-width:1180px}
+svg.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.strip{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:10px;padding:11px 14px;border-radius:3px;border-left:6px solid var(--red)}
+.strip.need{background:var(--ink);color:var(--paper)}
+.strip.resp{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--red);margin-bottom:18px}
+.strip b{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-right:6px}
+.need b{color:var(--grey)} .resp b{color:var(--red)}
+.strip span.n{border:1px solid #4a4a4e;border-radius:999px;padding:2px 12px;font-size:13px}
+.resp span.n{border-color:var(--line)}
+.cols{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:44px}
+.col h4{margin:0 0 2px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.col h4 span{color:var(--muted);margin-right:6px}
+.col .cs{font-size:12px;color:var(--muted);min-height:34px;margin-bottom:12px;border-bottom:2px solid var(--text);padding-bottom:8px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.node{position:relative;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--grey);border-radius:3px;padding:10px 11px 10px 12px;box-shadow:var(--shadow);transition:opacity .15s,transform .15s,border-color .15s}
+.node:hover{transform:translateY(-1px);border-color:var(--red)}
+.node .t{display:block;font-weight:700;font-size:13.5px;line-height:1.3}
+.node .d{display:block;font-size:12px;color:var(--muted);margin-top:3px;line-height:1.35}
+.node .now{display:block;margin-top:7px;padding-top:6px;border-top:1px dashed var(--line);font-size:12px;font-weight:700;line-height:1.35}
+.node .meta{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:6px;font-size:11px;font-weight:700;color:var(--muted)}
+.node .meta i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.node .meta .res{color:var(--red)}
+.r0{background:transparent;border:2px dashed var(--red)} .r1{background:var(--grey)} .r2{background:var(--ok)}
+.node.sel{outline:2px solid var(--red);outline-offset:1px;border-color:var(--red)}
+.node.dim{opacity:.22} .node.hide{opacity:.12;filter:grayscale(1)}
+.edge{fill:none;stroke:var(--edge);stroke-width:1.5;opacity:.7;transition:.15s}
+.edge.on{stroke:var(--red);stroke-width:2.6;opacity:1} .edge.dim{stroke:var(--edge-dim);opacity:.6}
+marker path{fill:var(--edge)}
+.under{margin-top:24px;border-top:2px solid var(--text);padding-top:10px}
+.under h4{margin:0 0 8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.under .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.enab{text-align:left;background:var(--ink-2);color:var(--paper);border:1px solid var(--ink-2);border-top:4px solid var(--red);border-radius:3px;padding:10px 12px}
+.enab:hover{border-color:var(--red)} .enab.sel{outline:2px solid var(--red);outline-offset:1px}
+.enab .t{display:block;font-weight:700;font-size:13.5px} .enab .d{display:block;font-size:12px;color:#C9C9C6;margin-top:3px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:12px;color:var(--muted);padding:2px 0 8px}
+.legend span{display:inline-flex;align-items:center;gap:6px} .legend i{display:inline-block;width:9px;height:9px;border-radius:50%}
+.notes{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.notice{border-left:5px solid var(--red);background:var(--red-tint);padding:10px 14px;border-radius:2px;font-size:14px}
+
+aside.panel{overflow:hidden;visibility:hidden;position:sticky;top:70px;align-self:start}
+.stage.open aside.panel{visibility:visible}
+.panel-in{width:400px;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--red);border-radius:3px;box-shadow:var(--shadow);padding:16px 18px 20px;max-height:calc(100vh - 86px);overflow:auto}
+.close{float:right;border:1px solid var(--line);background:none;width:30px;height:30px;border-radius:50%;font-size:16px;line-height:1}
+.close:hover{border-color:var(--red);color:var(--red)}
+.panel h3{font-size:19px;margin:4px 0 6px}
+.panel h5{margin:14px 0 6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.panel ul{margin:0;padding-left:18px} .panel li{margin:6px 0} .panel p{margin:6px 0 8px}
+.panel ul.rl{list-style:none;padding:0} .panel ul.rl li{margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.panel ul.rl li:last-child{border-bottom:0}
+.rl .fnd{display:block;font-size:13px;margin-top:3px} .rl .lim{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;border:1px solid var(--line);margin:0 4px 4px 0;white-space:nowrap}
+.pill.core{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+:root[data-theme="dark"] .pill.core{background:var(--red);border-color:var(--red)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pill.core{background:var(--red);border-color:var(--red)}}
+.pill.ready{background:var(--ok-tint);border-color:var(--ok);color:var(--ok)}
+.pill.fix{background:var(--warn-tint);border-color:var(--warn);color:var(--warn)}
+.pill.build{background:var(--stone);border-color:var(--grey);color:var(--muted)}
+.pill.direct{background:var(--red);border-color:var(--red);color:#fff}
+.pill.supporting{border-color:var(--text)}
+.pill.context{color:var(--muted);border-style:dashed}
+.pill.measure{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.linkbtn{background:none;border:0;padding:0;color:var(--red);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-align:left}
+
+.ind{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--grey);border-radius:3px;margin-bottom:10px;box-shadow:var(--shadow)}
+.ind.core{border-left-color:var(--red)}
+.ind-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 18px;align-items:center;padding:10px 14px}
+.ind-head{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;text-align:left;background:none;border:0;padding:0;width:100%}
+.ind-id{font-weight:800;color:var(--red);font-size:13px;min-width:28px} .ind-name{font-weight:700;font-size:15px}
+.ind-caret{margin-left:auto;font-size:12px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13px;color:var(--muted);margin:0 0 14px}
+.legend .pill{margin-right:6px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px;align-items:start}
+.tile{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--red);border-radius:3px;box-shadow:var(--shadow);padding:14px 14px 6px}
+.tile-h{margin:0 0 10px} .tile-h h3{margin:0;font-size:17px} .tile-h p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.tile .ind{margin-bottom:8px;box-shadow:none}
+.tile .ind-row{display:block;padding:8px 12px}
+.tile .ind-name{font-size:14px}
+.ind-body{border-top:1px solid var(--line);padding:12px 14px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 24px;margin:0}
+.ind-body[hidden]{display:none}
+.ind-body dt{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ind-body dd{margin:2px 0 0} .ind-body .wide{grid-column:1/-1}
+.toolbar-r{display:flex;gap:8px;margin-left:auto}
+.btn{border:1px solid var(--text);background:var(--surface);padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px}
+.btn:hover{background:var(--ink);color:var(--paper)} .btn.quiet{border-color:var(--line);font-weight:500}
+.dom-h{margin:20px 0 8px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px} .dom-h h3{margin:0;font-size:17px} .dom-h span{font-size:13px;color:var(--muted)}
+.count{font-size:13px;color:var(--muted);margin:2px 0 8px}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--surface);margin-bottom:22px}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th{background:var(--ink);color:var(--paper);text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:9px 12px}
+td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top;font-size:14px} tr:hover td{background:var(--red-tint)} td.m{color:var(--muted)}
+.refchip{display:inline-block;margin:0 4px 4px 0;padding:1px 8px;border:1px solid var(--red);border-radius:999px;font-size:12px;font-weight:700;color:var(--red);background:none}
+.refchip:hover{background:var(--red);color:#fff}
+
+.findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:3px;padding:16px 18px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:16px;line-height:1.3} .card p{margin:0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.src-card{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--grey);border-radius:3px;padding:14px 16px;box-shadow:var(--shadow)}
+.src-card.direct{border-left-color:var(--red)}
+.src-card h4{margin:4px 0 2px;font-size:15px;line-height:1.35}
+.src-card .org{font-size:12px;color:var(--muted);margin-bottom:6px}
+.src-card p{margin:0 0 6px;font-size:14px}
+.src-card .lim{font-size:12px;color:var(--muted)}
+.src-card .sup{margin-top:8px;font-size:12px;color:var(--muted)}
+.hl{outline:3px solid var(--red);outline-offset:2px}
+
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:12px;color:var(--muted)}
+
+@media (max-width:900px){
+  .stage,.stage.open{grid-template-columns:minmax(0,1fr)} .map{min-width:0}
+  .cols{grid-template-columns:1fr;row-gap:22px} svg.edges,.hide-narrow{display:none}
+  aside.panel{position:static} .panel-in{width:auto;max-height:none} .stage:not(.open) aside.panel{display:none}
+  .ind-row{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{nav.top,.bar,aside.panel{display:none!important}.scroller{overflow:visible}.ind-body[hidden]{display:grid!important}header.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <div class="brand">Baringa <b>x</b> Steel Warriors</div>
+    <h1>Theory of change: <em>how every session adds up</em></h1>
+    <p class="stmt" id="stmt"></p>
+    <p id="stmt2"></p>
+  </div>
+  <div class="tag">Put down. Pull up.</div>
+</div></header>
+
+<nav class="top" aria-label="Sections"><div class="wrap" id="nav"></div></nav>
+
+<div class="today"><div class="wrap">
+  <h2>Steel Warriors today</h2>
+  <div class="facts" id="facts"></div>
+  <p class="src" id="factsrc"></p>
+</div></div>
+
+<section class="sec" id="map"><div class="wrap">
+  <div class="kick">Theory of change</div>
+  <h2 class="h">From a free gym to a safer community</h2>
+  <p class="lede">Read left to right: what goes in, what Steel Warriors does, what is delivered, and the change that follows. Bold lines show where Steel Warriors is today. Each box shows how it is measured and how much research supports it. Click a box to see both. Select a programme to see its own aim, where it runs and the outcomes it is designed to achieve.</p>
+  <div class="bar">
+    <div class="group" id="progFilters"><span class="lbl">Programme</span></div>
+  </div>
+  <div class="bar">
+    <div class="group" id="outFilters"><span class="lbl">Outcome</span></div>
+  </div>
+  <div class="stage" id="stage">
+   <div>
+    <div class="legend">
+      <span><i style="background:var(--ok)"></i>Measured</span>
+      <span><i style="background:var(--grey)"></i>Partly measured</span>
+      <span><i style="border:2px dashed var(--red)"></i>Measure planned</span>
+      <span class="hide-narrow">Hover to trace a chain. Click for detail.</span>
+    </div>
+    <div class="scroller"><div class="map" id="mapEl">
+      <svg class="edges" id="edges" aria-hidden="true"></svg>
+      <div class="strip need" id="need"></div>
+      <div class="strip resp" id="resp"></div>
+      <div class="cols" id="cols"></div>
+    </div></div>
+   </div>
+   <aside class="panel" id="panel" aria-live="polite"><div class="panel-in" id="panelIn"></div></aside>
+  </div>
+  <h3 class="sub">About the selected programme</h3>
+  <div class="profile" id="profile"></div>
+  <div class="notes"><div class="notice" id="how"></div><div class="notice" id="caveat"></div></div>
+</div></section>
+
+<section class="sec alt" id="outcomes"><div class="wrap">
+  <div class="kick">The outcomes</div>
+  <h2 class="h">Six organisational impact outcomes</h2>
+  <p class="lede">One set of outcomes for all programmes, used consistently in funding applications, impact reporting, Board updates, programme development and strategic planning. Select an outcome to filter the map and the measures.</p>
+  <div class="tw"><table id="tblOut"></table></div>
+  <h3 class="sub">How our programmes contribute</h3>
+  <div class="tw"><table id="tblProg"></table></div>
+</div></section>
+
+<section class="sec" id="measures"><div class="wrap">
+  <div class="kick">The tracker</div>
+  <h2 class="h">How we will know it is working</h2>
+  <p class="lede">These are proposed measures to track across all programmes, not confirmed achievements. Each has one definition, one source and one accountable owner. Live values and targets are held in the participant database, not on this page. Select a measure to see its definition, source and the research behind it.</p>
+  <div class="legend" aria-label="How to read the measures">
+    <span><span class="pill core">Core</span> Tracked first, across every programme</span>
+    <span><span class="pill ready">In place</span> Data is already collected</span>
+    <span><span class="pill fix">Partly in place</span> Some data exists, a gap remains</span>
+    <span><span class="pill build">Planned</span> Not yet collected</span>
+  </div>
+  <div class="bar">
+    <div class="group" id="scopeFilters"></div>
+    <div class="toolbar-r"><button class="btn" type="button" id="exportCsv">Export CSV</button></div>
+  </div>
+  <div class="count" id="indCount"></div>
+  <div id="inds"></div>
+</div></section>
+
+<section class="sec alt" id="assumptions"><div class="wrap">
+  <div class="kick">The logic</div>
+  <h2 class="h">What has to be true, and what the research says</h2>
+  <p class="lede">Each link in the map rests on an assumption. The measures show whether it holds; the research shows why it is reasonable. Select a reference to read the source.</p>
+  <div class="tw"><table id="tblAssump"></table></div>
+</div></section>
+
+<section class="sec" id="research"><div class="wrap">
+  <div class="kick">The evidence base</div>
+  <h2 class="h">Research behind the theory of change</h2>
+  <p class="lede" id="resLede"></p>
+  <div class="findings" id="findings"></div>
+  <div class="notice" id="resNote" style="margin-bottom:18px"></div>
+  <div class="bar">
+    <div class="group" id="themeFilters"><span class="lbl">Theme</span></div>
+    <div class="group" id="fitFilters"><span class="lbl">Type</span></div>
+  </div>
+  <div class="count" id="resCount"></div>
+  <div class="cards" id="cards"></div>
+</div></section>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script id="toc-data" type="application/json">
+{
+ "statement":"Steel Warriors transforms the steel of seized knives into opportunities for young people to build stronger, safer and more positive futures.",
+ "statement2":"Through accessible calisthenics, trusted relationships, mentoring, education and employment pathways, we aim to prevent violence, reduce social exclusion, improve wellbeing and empower young people to reach their potential.",
+ "facts":[
+  {"n":"6","t":"gyms listed: five parks with public classes plus HMP Brixton"},
+  {"n":"20","t":"free sessions a week: four in each of five parks"},
+  {"n":"694","t":"sessions delivered in 2025: 293 community, 401 targeted"},
+  {"n":"20,000+","t":"young people supported since 2017"}
+ ],
+ "factsrc":"Source: Steel Warriors website (home, classes, impact and programmes pages). The home page headline counts seven gyms built; six are listed by name.",
+ "need":["Youth violence","Exclusion","Inequality","Poor wellbeing","Limited opportunities"],
+ "response":["Safe spaces","Calisthenics","Trusted coaches","Mentoring","Skills","Employment pathways"],
+ "outcomes":[
+  {"id":"O1","title":"Improved physical and mental wellbeing","chip":"Wellbeing","want":"Participants feel healthier, more active and better able to manage their wellbeing.","how":"Attendance, activity levels, wellbeing surveys, participant feedback."},
+  {"id":"O2","title":"Increased confidence and resilience","chip":"Confidence and resilience","want":"Young people develop self-belief, emotional resilience and the ability to overcome challenges.","how":"Baseline and endline confidence assessments, coach observations, case studies."},
+  {"id":"O3","title":"Stronger relationships and belonging","chip":"Belonging","want":"Participants develop positive relationships with trusted adults and peers and feel connected to their communities.","how":"Belonging surveys, repeat attendance, mentoring engagement, participant feedback."},
+  {"id":"O4","title":"Reduced vulnerability to violence and exploitation","chip":"Safety from violence","want":"Young people strengthen protective factors, access early intervention and make safer choices.","how":"Safeguarding and referral data, mentoring outcomes, risk assessments and individual progression reviews."},
+  {"id":"O5","title":"Improved education, skills and employment opportunities","chip":"Skills and work","want":"Young people develop transferable skills, achieve qualifications and progress towards employment or further education.","how":"Qualifications, programme completion, work placements, employment and education progression."},
+  {"id":"O6","title":"Stronger, safer and more inclusive communities","chip":"Communities","want":"Communities benefit from accessible activities, positive youth engagement and improved community connections.","how":"Community participation, partnerships, demographic reach, stakeholder feedback and local impact studies."}
+ ],
+ "programmes":[
+  {"id":"built","label":"Built of Steel","outcomes":["O1","O3"],"contributes":"Wellbeing, community belonging, positive relationships","where":"13 sessions a week across all five parks; open to all ages and levels","partners":"Not yet recorded. To confirm with Steel Warriors.","aim":"Free community classes that give local people of every age and ability a safe, welcoming way in."},
+  {"id":"future","label":"Future Warriors","outcomes":["O1","O2","O3","O4","O5"],"contributes":"Wellbeing, relationships, protection from violence and exploitation, life skills and progression","where":"5 sessions a week (Stratford, Finsbury Park, Ruskin Park, Langdon Park, Pymmes Park); young people only","tag":"Somewhere to go. Something positive to do. Someone trusted to talk to. Something to aspire to.","aim":"To reduce young people's vulnerability to violence, exploitation and offending through safe spaces, positive activities, trusted relationships, mentoring and clear progression support.","who":"Young people aged 14 to 18 (11 to 13 where appropriate) who may be affected by serious violence, criminal exploitation, harmful peer groups, exclusion, risk of not being in education, employment or training, trauma or poverty.","lengths":"4, 8 or 12 weeks. Four weeks suits a taster, holiday or outreach block. Eight weeks is the core early-intervention programme for youth and community partners. Twelve weeks suits higher-need cohorts or longer commissions.","partners":"Community and youth partners. Higher-risk young people can be referred into specialist mentoring (Steel Connections). Named partners to be confirmed.","areas":[{"a":"Wellbeing","t":"Improved mental wellbeing, confidence, self-esteem and ability to respond to stress."},{"a":"Relationships","t":"Stronger positive relationships with peers and trusted adults."},{"a":"Protective factors","t":"More engagement in positive activity and less vulnerability to harmful influences."},{"a":"Life skills","t":"Better communication, teamwork, emotional regulation, leadership and decision-making."},{"a":"Aspiration","t":"More motivation, personal ambition and achievable future goals."},{"a":"Progression","t":"Better engagement with education, employment, training or specialist support."}],"evidence":["Registration, demographics and attendance","Baseline and follow-up wellbeing and confidence measures","Individual goals and progression plans","Mentoring activity, where it applies","Education, training and employment progression","Young person feedback and case studies","Safeguarding and referral information, recorded appropriately","Partner and parent or carer feedback, where appropriate"],"caveat":"Risk reduction is claimed only where it can be evidenced.","src":"Future Warriors programme plan (4, 8 and 12 weeks)"},
+  {"id":"sisters","label":"Steel Sisters","outcomes":["O1","O2","O3","O4","O5"],"contributes":"Confidence, wellbeing, belonging, safety from exploitation and violence against women and girls, and progression","where":"1 session a week at Langdon Park; young women aged 14 to 25. Also delivered as a 4, 8 or 12 week programme with partners","tag":"Strong women. Stronger choices. Stronger futures.","aim":"To empower young women to become healthier, more confident and resilient through female-only physical activity, trusted relationships, life-skills learning and positive progression.","who":"Young women aged 14 to 25, particularly those with low confidence, social isolation, poor emotional wellbeing, barriers to physical activity, risk of exploitation or violence against women and girls, deprivation, or disengagement from education or employment.","lengths":"4, 8 or 12 weeks. Four weeks suits a taster, school holiday or new partner. Eight weeks is the core partner programme. Twelve weeks suits targeted cohorts with higher support needs.","partners":"Specialist safety themes are delivered with appropriate partners where needed, and with partner safeguarding leads. Named partners to be confirmed.","areas":[{"a":"Personal","t":"Improved confidence, self-esteem, resilience and emotional wellbeing."},{"a":"Social","t":"Supportive peer networks, communication skills and a stronger sense of belonging."},{"a":"Safety","t":"Better understanding of healthy relationships, consent, online safety and exploitation, and where to seek support."},{"a":"Physical","t":"More physical activity, body confidence, strength and healthy routines."},{"a":"Progression","t":"Higher aspirations and more engagement with education, volunteering, leadership and employment."}],"evidence":["Attendance and retention","Baseline and end confidence and wellbeing measures","Participant goal tracking","Coach observations and reflective feedback","Participant voice and case studies","Parent, carer or partner feedback, where appropriate","Progression into wider Steel Warriors, education, volunteering, leadership or employment"],"caveat":"Attendance alone cannot be shown to prevent exploitation or violence against women and girls. What the programme can show is growth in the protective factors.","src":"Steel Sisters programme plan (4, 8 and 12 weeks)"},
+  {"id":"schools","label":"Steel in Schools","outcomes":["O1","O2","O3","O5","O6"],"contributes":"Confidence, resilience, relationships, wellbeing and aspiration","where":"In schools, colleges and alternative provision; not on the weekly timetable. Westminster: 200 young people planned","tag":"Stronger people. Brighter futures.","aim":"To use calisthenics to build stronger bodies, stronger minds and stronger communities, helping young people develop confidence, resilience, communication, belonging and positive pathways.","who":"Young people in schools, colleges, alternative provision and other education settings, including those who may be disengaged from traditional sport, have low confidence or wellbeing, or would benefit from positive relationships and a different route into personal development.","lengths":"4, 8 or 12 weeks. Four weeks suits a short intervention or enrichment block. Eight weeks is the core programme and covers all five foundations (self, team, mind, community, future). Twelve weeks suits targeted cohorts.","partners":"Schools, colleges and alternative provision settings. Teacher and partner feedback is collected. Named partners to be confirmed.","areas":[{"a":"Stronger self","t":"Improved confidence, self-esteem, resilience and willingness to try unfamiliar activities."},{"a":"Stronger relationships","t":"Better communication, teamwork, leadership, trust and positive relationships."},{"a":"Stronger connection","t":"Greater belonging, inclusion, participation and access to trusted adults."},{"a":"Wellbeing","t":"Better understanding of personal wellbeing and healthy coping strategies."},{"a":"Brighter future","t":"Higher aspirations and more engagement with education, training and community opportunities."}],"evidence":["Baseline and end confidence and wellbeing questions","Attendance and engagement","Participant reflection and goal tracking","Teacher and partner feedback","Coach observations","Trusted-adult and belonging measures","Progression into school, community or Steel Warriors opportunities"],"caveat":"The programme measures the protective factors around a young person. It does not claim that a short intervention will fix mental health or attendance.","src":"Steel in Schools programme plan (4, 8 and 12 weeks); Growth, Impact and Progression 2026 (Westminster)"},
+  {"id":"barriers","label":"Beyond Barriers","outcomes":["O1","O2","O3"],"contributes":"Confidence, physical wellbeing, independence, social connection and belonging","where":"1 session a week at Ruskin Park; young people aged 11 to 25 with SEND, disabilities or additional needs","tag":"Participation before performance. Ability before disability. Progress at your own pace.","aim":"To remove barriers to participation through accessible, person-centred movement that improves wellbeing, confidence, independence, relationships and belonging.","who":"Young people aged 11 to 25 with SEND, disabilities, neurodiversity, sensory impairments, long-term health conditions or any additional need that affects participation. No previous sporting experience is needed.","lengths":"4, 8 or 12 weeks. Four weeks suits a taster, pilot or transition programme. Eight weeks is the core short programme. Twelve weeks suits participants who benefit from consistency and longer-term support.","partners":"Parents, carers and support workers; partner information-sharing arrangements are agreed before delivery. Named partners to be confirmed.","areas":[{"a":"Confidence","t":"Greater self-esteem, willingness to take part and pride in achievement."},{"a":"Physical wellbeing","t":"Improved strength, movement, mobility, coordination or fitness, relative to each person's goals."},{"a":"Independence","t":"More choice, confidence and ability to take part with the right support."},{"a":"Social connection","t":"Less isolation, better communication and new positive relationships."},{"a":"Belonging","t":"Feeling welcomed, included, valued and part of a supportive community."},{"a":"Healthy routines","t":"More enjoyment of movement and confidence to stay active."}],"evidence":["Individual baseline and end goals","Attendance and engagement","Coach observations","Participant feedback using accessible methods","Parent, carer or support-worker feedback, where appropriate","Physical wellbeing or functional goals, where suitable","Case studies and celebration of personal achievements"],"caveat":"Success is individual. Measures capture personal progress rather than comparing participants with a standard benchmark.","src":"Beyond Barriers programme plan (4, 8 and 12 weeks)"},
+  {"id":"motion","label":"Steel in Motion","outcomes":["O1","O2","O3"],"contributes":"Strength, movement quality, injury awareness, confidence and healthy training habits","where":"Delivered with dance groups, schools, colleges, youth organisations, sports clubs and community partners; not on the weekly timetable","tag":"Stronger for the movement you love.","aim":"To use calisthenics and functional strength training to help dancers and participants from other sports become stronger, more resilient and more confident movers, with safe training habits that support performance and reduce avoidable injury risk.","who":"Young people and community participants who dance or play sport and would benefit from extra strength, conditioning, mobility and injury-prevention support. No previous calisthenics experience is needed.","lengths":"4, 8 or 12 weeks. Four weeks suits tasters and holiday provision. Eight weeks is the recommended standard for schools, clubs and community partners. Twelve weeks suits groups seeking sustained, measurable progression.","partners":"Dance teachers, sports coaches and the host organisation. Named partners to be confirmed.","areas":[{"a":"Stronger body","t":"Strength, muscular endurance, core stability and physical capacity."},{"a":"Better movement","t":"Improved balance, coordination, mobility, control and movement quality."},{"a":"Injury awareness","t":"Understanding of warm-up, recovery, safe progression and common injury-risk factors."},{"a":"Greater confidence","t":"More confidence trying physical challenges and understanding their own body."},{"a":"Transfer to sport or dance","t":"Seeing how strength and conditioning support performance in their chosen activity."},{"a":"Healthy training habits","t":"Sustainable routines for preparation, recovery, rest and progression."}],"evidence":["Baseline and end confidence and knowledge questions","Attendance and retention","Individual movement and strength goals","Coach observations of technique, control and progression","Participant reflection on warm-up, recovery and injury prevention","Dance teacher or sports coach feedback, where appropriate","Progression into continued physical activity and Steel Warriors opportunities"],"caveat":"The programme does not promise that injury can always be prevented. It builds protective factors that reduce avoidable risk.","src":"Steel in Motion programme plan (4, 8 and 12 weeks)"},
+  {"id":"made","label":"Made of Steel","outcomes":["O2","O3","O5"],"contributes":"Skills, qualifications, paid experience, leadership and progression, each counted separately","where":"Three stages: Steel Works, Steel Futures, Steel Assistants","tag":"From unemployment to opportunity.","aim":"A structured three-stage pathway that takes young people from employability foundations to a recognised qualification and paid work experience, then to paid sessional work alongside experienced coaches.","who":"Young people who may be out of education, employment or training, unemployed or facing barriers to employment.","lengths":"Three stages. Steel Works builds employability skills. Steel Futures is a two-week Level 2 Gym Instructor qualification with mentoring and paid work experience. Steel Assistants is paid sessional coaching alongside lead coaches.","partners":"Paid work experience is within Steel Warriors and/or a delivery partner. Named partners to be confirmed.","areas":[{"a":"Skills","t":"Job search and applications, CV writing, budgeting, communication, teamwork and presentation (Steel Works)."},{"a":"Qualification","t":"A recognised Level 2 Gym Instructor qualification, with mentoring and help with travel and food costs (Steel Futures)."},{"a":"Paid experience","t":"Paid work experience and sessional work, building coaching, planning and safeguarding practice (Steel Futures, Steel Assistants)."},{"a":"Progression","t":"Moving on to work, education or training, counted separately from qualifications."}],"evidence":["Programme starts and completions by stage","Qualifications achieved, with starters shown alongside","Paid work experience and Steel Assistant roles","Destinations at 3 and 6 months","One-to-one mentoring records"],"caveat":"Skills and qualifications are not the same as employment. Each is counted on its own.","src":"Growth, Impact and Progression 2026 (Made of Steel); the programme plan is not yet received"},
+  {"id":"connections","label":"Steel Connections","outcomes":["O3","O4"],"contributes":"Violence prevention, trusted relationships and specialist mentoring","where":"Young people facing the highest risk of violence, exploitation or dropping out of education, with specialist partners","partners":"Specialist partners. Named partners to be confirmed.","aim":"Trust-building, then personalised mentoring for young people at the highest risk of violence, exploitation or dropping out of education."},
+  {"id":"bars","label":"Beyond Bars","outcomes":["O5"],"contributes":"Skills, rehabilitation, positive progression and resettlement","where":"Gym inside HMP Brixton","partners":"HMP Brixton. Further partners to be confirmed.","aim":"Structured training, qualifications and personal development inside the gym at HMP Brixton."}
+ ],
+ "stages":[
+  {"id":"inp","label":"Inputs","sub":"What enables delivery"},
+  {"id":"act","label":"Activities","sub":"What Steel Warriors does"},
+  {"id":"out","label":"Outputs","sub":"What is delivered"},
+  {"id":"stm","label":"Early outcomes","sub":"First changes in a young person"},
+  {"id":"mid","label":"Outcomes that last","sub":"The outcome themes"},
+  {"id":"lng","label":"Long-term impact","sub":"Wider social change"}
+ ],
+ "nodes":[
+  {"id":"i1","stage":"inp","title":"Free gyms in parks","short":"Safe, open, built from surrendered knives","outcomes":["O1","O6"],"programmes":["built","future","sisters","barriers"],"today":"6 gyms, free all day","facts":["Langdon Park (Poplar, Tower Hamlets), opened 2017","Ruskin Park (Denmark Hill, Lambeth), 2019","Finsbury Park (Haringey), 2019","HMP Brixton (Lambeth), 2020, no public access","Carpenters Estate, Stratford (Newham), 2025","Pymmes Park (Edmonton, Enfield), 2026"],"desc":"Gyms built from steel melted down from collected knives, free to use all day. Six are listed: Langdon Park, Ruskin Park, Finsbury Park, Carpenters Estate in Stratford, Pymmes Park and the gym inside HMP Brixton (no public access).\n\nA gym is more than a place to exercise. Pymmes Park, which opened in 2026, has become a programme hub where community classes, Future Warriors, Steel Sisters and Beyond Barriers run from one location. Knives surrendered through the Home Office National Weapons Surrender Scheme are being melted down and rebuilt as two further gyms, and a Westminster gym is planned, with the Regent's Park area preferred.","source":"Steel Warriors website; Growth, Impact and Progression 2026"},
+  {"id":"i2","stage":"inp","title":"Trusted coaches and staff","short":"Qualified, consistent, safeguarding-trained","outcomes":["O2","O3","O4"],"programmes":["built","future","sisters","schools","barriers","motion","made","connections","bars"],"desc":"Qualified coaches, programme leads and staff who turn up consistently, because trust builds through consistency. Coaches act as mentors and positive role models.\n\nThey work within DBS, safeguarding, professional-boundary and risk-assessment requirements, follow Steel Warriors' procedures for any disclosure and work with partner safeguarding leads. Funding has put qualified coaches on the ground and paid for safeguarding and programme oversight. Over time, some coaches are young people who came through the programmes, as paid Steel Assistants.","source":"Steel Warriors theory of change notes"},
+  {"id":"i3","stage":"inp","title":"Funders and partners","short":"About 30 grants, colleges, schools, housing and prison partners","outcomes":["O5","O6"],"programmes":["built","future","sisters","schools","barriers","motion","made","connections","bars"],"desc":"About 30 grants, most of them restricted to specified outcomes, plus partners who host sessions, refer young people, provide work experience and help capture social value. Partners include schools, colleges, housing and prison partners, youth organisations and sports clubs.\n\nFunders such as Vitol have supported new gyms, new programmes and the coaches, safeguarding and evidence work behind them. Steel Warriors is also a partner in the Home Office National Weapons Surrender Scheme (45 surrender bins across five regions and a mobile van; more than 15,000 knives surrendered nationally). Because each funder asks for evidence of different outcomes, one shared set of outcomes matters.","source":"Steel Warriors stakeholder interviews"},
+  {"id":"a1","stage":"act","title":"Free community classes","short":"Built of Steel: safe spaces and calisthenics, open to all ages and levels","outcomes":["O1","O3","O6"],"programmes":["built"],"today":"13 sessions a week in 5 parks","desc":"Free calisthenics classes in five parks, open to all ages and levels and run by qualified coaches. Sessions are progressive, so everyone starts where they are and no previous experience is needed. Each session begins with a park safety check and ends with a register and new registrations, which is how participation is counted.\n\nCommunity classes are often the first way in: they give local people a visible alternative sport offer, bring the calisthenics community together and lead into the targeted programmes. Pymmes Park shows the pattern, with 25 to 30 regular participants across three sessions.","source":"Steel Warriors website (classes, programmes)"},
+  {"id":"a2","stage":"act","title":"Targeted youth programmes","short":"Future Warriors, Steel Sisters, Beyond Barriers, Steel in Schools, Steel in Motion","outcomes":["O1","O2","O3","O4","O6"],"programmes":["future","sisters","schools","barriers","motion"],"today":"7 sessions a week: Future Warriors 5, Steel Sisters 1, Beyond Barriers 1","desc":"Five programmes for specific groups, each delivered as a 4, 8 or 12 week programme with the same session structure: welcome and wellbeing check-in, warm-up, calisthenics, a personal-development focus, reflection and goal setting, then close and signposting.\n\nFuture Warriors works with teens aged 14 to 18 affected by or at risk of serious violence. Steel Sisters runs female-only sessions for young women aged 14 to 25. Beyond Barriers offers adapted, person-centred movement for 11 to 25 year olds with SEND and additional needs. Steel in Schools brings calisthenics-led personal development into schools, colleges and alternative provision. Steel in Motion builds strength, mobility and injury-prevention habits for dancers and young people in other sports. Steel in Schools and Steel in Motion are not on the weekly timetable.","source":"Steel Warriors website (classes, programmes); programme plans; theory of change notes"},
+  {"id":"a3","stage":"act","title":"Made of Steel pathway","short":"Skills and employment: Steel Works, Steel Futures, Steel Assistants","outcomes":["O2","O5"],"programmes":["made"],"today":"3 stages: skills, qualification, paid coaching","desc":"A structured three-stage pathway for young people who may be out of education, employment or training, unemployed or facing barriers to work. It does not deliver a short intervention and leave a young person to navigate the next step alone.\n\nStage one, Steel Works: sport with mentoring, career guidance, job search and applications, CVs, interview practice, budgeting, business ideas, presentation skills and goal setting. Stage two, Steel Futures: a two-week, full-time Level 2 Gym Instructor qualification with coursework and an examination, regular one-to-one mentoring, help with travel and food costs, and paid work experience. Stage three, Steel Assistants: paid sessional work alongside lead coaches, building coaching, session planning, communication, time management and safeguarding practice.","source":"Steel Warriors website (programmes)"},
+  {"id":"a4","stage":"act","title":"Specialist mentoring and leadership","short":"Steel Connections, Beyond Bars, Youth Leadership and Youth Voice","outcomes":["O2","O3","O4","O5"],"programmes":["connections","bars"],"today":"Specialist mentoring, a prison gym, paid Youth Voice roles","desc":"Support for young people at the highest risk, and for young people ready to lead.\n\nSteel Connections starts with building trust, then offers personalised mentoring for young people facing the highest risk of violence, exploitation or dropping out of education, working with specialist partners; Future Warriors can refer higher-risk young people into it. Beyond Bars offers structured training, qualifications and personal development inside the gym at HMP Brixton. Youth Leadership and Youth Voice put young people forward as ambassadors, role models and in paid roles.","source":"Steel Warriors website (programmes); theory of change notes"},
+  {"id":"o1","stage":"out","title":"Sessions delivered","short":"Free sessions, community and targeted","outcomes":["O1","O3","O6"],"programmes":["built","future","sisters","schools","barriers","motion","made","connections","bars"],"today":"2025: 694 sessions (293 community, 401 targeted); 20 a week now","facts":["Community classes rated 9.5 out of 10 on average in 2025"],"desc":"Free sessions delivered, by site and programme, against a timetable of 20 free sessions a week (four in each of five parks).\n\nIn 2025, 694 sessions were delivered: 293 community and 401 targeted. Community classes were rated 9.5 out of 10 on average in 2025. Every session is registered, so delivery can be checked against what was promised to funders and communities.","source":"Steel Warriors website (classes, impact)"},
+  {"id":"o2","stage":"out","title":"People reached","short":"Unique participants, attendances, geographical coverage","outcomes":["O1","O3","O6"],"programmes":["built","future","sisters","schools","barriers","motion","made","connections","bars"],"today":"20,000+ since 2017. 2025 registered: 43% under 18, 19% aged 18 to 25, 36% female","desc":"Who comes, from where and how often: unique participants, total attendances and geographical coverage.\n\nSteel Warriors reports more than 20,000 young people supported since 2017. Of people registered in 2025, 43% were under 18, 19% were aged 18 to 25 and 36% were female. Attendance shows participation, not impact: the boxes that follow show what changes for the people who take part.","source":"Steel Warriors website (impact)"},
+  {"id":"o3","stage":"out","title":"Progress through programmes","short":"Completions, qualifications, mentoring, paid opportunities","outcomes":["O4","O5"],"programmes":["future","made","connections","bars"],"today":"11 completed the Level 2 Gym Instructor qualification","desc":"Young people moving through defined stages: starting, completing, and stepping into mentoring, volunteering, paid or leadership roles.\n\nFor example, 11 young people completed the Level 2 Gym Instructor qualification in Steel Futures, and those who finish can apply to become paid Steel Assistants. The programme plans also track completion of 4, 8 or 12 week blocks and progression into wider Steel Warriors opportunities.","source":"Growth, Impact and Progression 2026"},
+  {"id":"s1","stage":"stm","title":"Safe and welcome","short":"Feel welcomed, safe and respected","outcomes":["O3","O6"],"desc":"Participants feel safe in the park, welcome in the group and respected by coaches, which is the starting point for trust.\n\nEvery session starts with a park safety check and a welcome and wellbeing check-in, so coaches notice how people are feeling and any support needs. Programmes add their own: Steel Sisters agrees a safe-space code in week one, and Beyond Barriers adapts each session to the person.","source":"Steel Warriors theory of change working model"},
+  {"id":"s2","stage":"stm","title":"Early confidence and motivation","short":"First gains in self-belief and energy","outcomes":["O1","O2"],"desc":"First gains in self-belief, energy and motivation from taking part and meeting small goals.\n\nEach session ends with reflection and goal setting, so participants recognise progress and set one small next step. Programmes take a baseline in week one, so that progress can be seen when the same questions are asked at the end.","source":"Steel Warriors theory of change working model"},
+  {"id":"s3","stage":"stm","title":"Trusted adults and awareness of support","short":"Know who to turn to and what help exists","outcomes":["O3","O4"],"desc":"Young people build a relationship with a trusted adult and learn what support is available, including early intervention and referral routes.\n\nSessions close with signposting to support routes and progression opportunities, and coaches work within Steel Warriors' safeguarding procedures. Where a young person needs more, higher-risk participants can be referred into specialist mentoring through Steel Connections.","source":"Steel Warriors theory of change notes"},
+  {"id":"m1","stage":"mid","title":"Physical and mental wellbeing","short":"Healthier, more active, better able to manage wellbeing","outcomes":["O1"],"desc":"Participants feel healthier, more active and better able to manage their wellbeing.\n\nRegular, free, community-based activity builds strength, stamina and routine, while a wellbeing check-in and a personal-development theme in each session help young people understand and manage how they feel. Research links regular community exercise and outdoor gyms to better wellbeing; see the sources below. Wellbeing is measured through attendance, activity levels, wellbeing surveys and participant feedback, using an adapted version of the WEMWBS wellbeing scale.","source":"Steel Warriors theory of change notes"},
+  {"id":"m2","stage":"mid","title":"Confidence and resilience","short":"Self-belief, emotional resilience, overcoming challenges","outcomes":["O2"],"desc":"Young people develop self-belief, emotional resilience and the ability to overcome challenges.\n\nProgressive calisthenics lets people see their own progress, and sessions on resilience (stress, setbacks, asking for help) turn that into confidence outside the gym. Confidence is measured with baseline and endline assessments, coach observations and case studies, so change can be matched to the same person.","source":"Steel Warriors theory of change notes"},
+  {"id":"m3","stage":"mid","title":"Belonging and positive relationships","short":"Trusted adults, positive peers, connected to community","outcomes":["O3","O4"],"desc":"Participants develop positive relationships with trusted adults and peers and feel connected to their communities.\n\nConsistent coaches, team challenges and a welcoming peer group build trust over time. These relationships and the sense of belonging are protective factors against vulnerability to violence and exploitation. They are measured through belonging surveys, repeat attendance, mentoring engagement and participant feedback.","source":"Steel Warriors theory of change notes"},
+  {"id":"m4","stage":"mid","title":"Skills and qualifications","short":"Transferable skills and recognised qualifications","outcomes":["O5"],"desc":"Young people develop transferable skills and achieve recognised qualifications.\n\nExamples are CV writing, job applications, budgeting, communication and presentation skills in Steel Works, and the Level 2 Gym Instructor qualification in Steel Futures, which 11 young people have completed. Skills and qualifications do not on their own mean a job, so employability and progression are shown separately in the next box.","source":"Steel Warriors theory of change notes"},
+  {"id":"m5","stage":"mid","title":"Employability and progression","short":"Paid experience, then work, education or training","outcomes":["O5"],"desc":"Young people gain paid work experience and move on to employment, further education or training.\n\nIn Made of Steel, paid work experience sits inside Steel Futures and paid sessional work follows in Steel Assistants. Only some of those who gain a skill or a qualification take these steps, so they are counted separately, with destinations to be followed up at 3 and 6 months (proposed measure G3).","source":"Steel Warriors theory of change notes; Growth, Impact and Progression 2026; call with Steel Warriors"},
+  {"id":"l1","stage":"lng","title":"Safer communities","short":"Safer, better-connected places","outcomes":["O6"],"today":"Estimated social value per gym: 160k pounds in year one, 700k over ten years","desc":"Communities benefit from accessible activities, positive youth engagement and stronger connections.\n\nA free gym in a park gives a neighbourhood a safe place to meet, and research links neighbourhood cohesion to wellbeing and to less violence. Social value figures are estimates using the National TOMs framework: about 160,000 pounds in year one and 700,000 pounds over ten years for each gym.","source":"Steel Warriors website (impact)"},
+  {"id":"l2","stage":"lng","title":"Reduced risk of violence","short":"A contribution, not a claim","outcomes":["O4"],"desc":"Reducing youth violence is central to the mission. Steel Warriors builds the protective factors (confidence, resilience, positive relationships, belonging and opportunity) that contribute to reducing vulnerability to violence and exploitation.\n\nAttending sessions alone cannot be shown to reduce knife crime, so this map claims a contribution and measures the protective factors, not crime itself. Steel Warriors also helps remove dangerous weapons from the streets as a partner in the Home Office National Weapons Surrender Scheme.","source":"Steel Warriors theory of change notes"},
+  {"id":"l3","stage":"lng","title":"Greater inclusion","short":"Reaching those left out of mainstream sport","outcomes":["O6"],"desc":"More young people and communities who have been excluded take part and feel they belong.\n\nFree, welcoming sessions reach groups typically left out of mainstream sport, including young women and girls, young people with SEND and young people facing barriers to employment, in low-income and marginalised communities.","source":"Steel Warriors theory of change notes"},
+  {"id":"l4","stage":"lng","title":"Sustainable positive futures","short":"Wellbeing, education, work and aspiration","outcomes":["O1","O5"],"desc":"Lasting wellbeing, education and employment prospects, and reduced involvement with youth justice.\n\nThis is a long-term ambition and cannot be attributed to Steel Warriors alone. The programmes build the confidence, skills, qualifications and paid experience that make it more likely.","source":"Steel Warriors theory of change notes; working model"},
+  {"id":"sis_e1","stage":"stm","prog":"sisters","title":"Safe, female-only space","short":"Feel safe, welcome and part of the group","outcomes":["O3"],"desc":"Participants agree a safe-space code in the first week and feel able to take part in a women-only group at their own level.\n\nSteel Sisters is a female-only early-intervention programme, delivered in a person-centred and culturally respectful way. Each session opens with a welcome and wellbeing check-in so coaches can identify support needs, and safeguarding and inclusion, including accessibility and cultural needs, are built into planning.","source":"Steel Sisters programme plan","like":["s1"],"wk":"Week 1, This Is Me: welcome, safe-space agreement, strengths and confidence baseline. Every session opens with a welcome and wellbeing check-in.","see":["Participants agree the safe-space code together","They come back for later sessions and join in the group activity"],"meas":"Attendance and retention; coach observations"},
+  {"id":"sis_e2","stage":"stm","prog":"sisters","title":"Body confidence and first strength gains","short":"Beginner calisthenics and a more positive self-image","outcomes":["O1","O2"],"desc":"First gains in strength and body confidence, and practice at challenging negative self-talk, through beginner-friendly calisthenics.\n\nSessions use movement, challenge and teamwork as the vehicle for learning, then connect the activity to confidence in a short personal-development focus, followed by reflection and a small next step.","source":"Steel Sisters programme plan","like":["s2"],"wk":"Week 2, Body Confidence: beginner calisthenics, positive self-image and healthy movement. The 4-week plan has Strong in My Body, which challenges negative self-talk.","see":["They try beginner movements at their own level","They speak more positively about their body and what it can do"],"meas":"Participant goal tracking; coach observations and reflective feedback"},
+  {"id":"sis_e3","stage":"stm","prog":"sisters","title":"Know about healthy relationships and consent","short":"Boundaries, consent, online safety, where to get help","outcomes":["O4"],"desc":"Participants learn about healthy relationships, boundaries, consent, online safety and exploitation, and where to seek support.\n\nIn the 8-week plan these are taught across two sessions: healthy relationships (respect, consent, recognising unhealthy behaviours) and staying safe (online safety, grooming and exploitation awareness, bystander awareness). Specialist safety themes can be delivered with appropriate partners where needed, and disclosures follow Steel Warriors' safeguarding procedures.","source":"Steel Sisters programme plan","like":["s3"],"measures":["S5"],"research":["X5"],"wk":"Week 5, Healthy Relationships: boundaries, respect, consent and recognising unhealthy behaviours. Week 6, Staying Safe: online safety, grooming and exploitation awareness, bystander awareness.","see":["They can describe healthy and unhealthy behaviour in a relationship","They know who to ask for help and where support is"],"meas":"Baseline and end questions (proposed measure S5); coach reflective feedback"},
+  {"id":"sis_m1","stage":"mid","prog":"sisters","title":"Confidence and self-esteem","short":"Self-belief, resilience and emotional wellbeing","outcomes":["O2"],"desc":"Higher confidence, self-esteem, resilience and emotional wellbeing, including body confidence.\n\nThis is the programme's personal outcome. It is built through week-one goals and a baseline, beginner calisthenics, sessions on resilience and managing setbacks, and a final confidence review that repeats the measures taken at the start.","source":"Steel Sisters programme plan","like":["m2"],"wk":"Week 1 baseline, Week 4 Resilience (setbacks, anxiety, emotions, asking for help) and Week 8 repeat measures.","see":["Self-rated confidence is higher at the end than at the start","They handle setbacks and ask for help"],"meas":"Baseline and end confidence and wellbeing measures; participant voice and case studies"},
+  {"id":"sis_m2","stage":"mid","prog":"sisters","title":"Supportive peers and belonging","short":"Peer networks, communication, a stronger sense of belonging","outcomes":["O3"],"desc":"Young women build supportive friendships and networks, communicate with more confidence and feel they belong.\n\nSessions cover teamwork, inclusion and trusted adults, and, in the 12-week plan, finding a voice, boundaries and assertiveness. Reducing isolation and giving access to positive female role models and trusted adults are stated aims of the programme.","source":"Steel Sisters programme plan","like":["m3"],"wk":"Week 3, Trust & Belonging: teamwork, supportive friendships, inclusion and trusted adults. Week 8, Stronger Together.","see":["Friendships form inside the group","They communicate their needs and views in the group"],"meas":"Attendance and retention; participant voice; coach observations"},
+  {"id":"sis_m3","stage":"mid","prog":"sisters","title":"Safer choices","short":"Healthy relationships, consent, online safety and exploitation awareness","outcomes":["O4"],"desc":"A better understanding of healthy relationships, consent, online safety and exploitation, and confidence to ask for help. This builds protective factors; it does not on its own show reduced violence.\n\nThe programme is designed for young women who may be at risk of exploitation or violence against women and girls. Learning is practical: recognising warning signs, setting boundaries, staying safe online and knowing where support is. Trusted relationships with coaches and peers reinforce it.","source":"Steel Sisters programme plan","measures":["S5","S4"],"research":["X5","X7"],"wk":"Weeks 5 and 6 in the 8-week plan. The 12-week plan has Healthy Relationships in Week 7 and Staying Safe Online in Week 8, with Communication (voice, boundaries, assertiveness) in Week 5.","see":["They can recognise grooming and exploitation warning signs","They use safer online habits and ask for support when needed"],"meas":"Baseline and end questions; coach reflective feedback; parent, carer or partner feedback where appropriate"},
+  {"id":"sis_m4","stage":"mid","prog":"sisters","title":"Physical activity and healthy routines","short":"Strength, body confidence and regular activity","outcomes":["O1"],"desc":"More physical activity, strength, body confidence and healthy routines.\n\nThe programme addresses barriers to physical activity directly: the female-only setting and beginner-friendly sessions let participants build a regular routine, and the final week's challenge shows how far each person has come.","source":"Steel Sisters programme plan","like":["m1"],"wk":"Beginner calisthenics in every session, with Week 2 Body Confidence and the Week 8 final challenge.","see":["Regular attendance becomes a routine","They report feeling stronger and more active"],"meas":"Attendance and retention; participant goal tracking"},
+  {"id":"sis_m5","stage":"mid","prog":"sisters","title":"Aspiration and next steps","short":"Interest in education, volunteering, leadership and work","outcomes":["O5"],"desc":"Higher aspirations and more engagement with education, volunteering, leadership and employment opportunities.\n\nParticipants learn from women in different pathways in sessions on education, careers, volunteering and a personal progression plan. They can progress into wider Steel Warriors opportunities, leadership, employability support and community ambassador roles.","source":"Steel Sisters programme plan","measures":["G3"],"wk":"Week 7, Future Me: female role models, aspirations, careers, volunteering and leadership. The 12-week plan adds Week 10 Female Role Models and Week 11 Future Me with a personal progression plan.","see":["Each participant sets a personal next step","Some take up volunteering, leadership or other Steel Warriors opportunities"],"meas":"Progression into wider Steel Warriors, education, volunteering, leadership or employment"},
+  {"id":"sis_l1","stage":"lng","prog":"sisters","title":"Stronger choices, lower risk of exploitation and violence","short":"A contribution, not a claim","outcomes":["O4"],"desc":"Strong women. Stronger choices. Stronger futures. Steel Sisters builds protective factors that contribute to reducing young women's vulnerability to exploitation and violence against women and girls. Attendance alone cannot be shown to prevent either.\n\nWhat the programme can show is growth in the factors that protect: confidence, supportive relationships, safety knowledge and knowing where to turn. These are tracked through baseline and end measures, participant voice and partner feedback.","source":"Steel Sisters programme plan","like":["l2"],"wk":"The whole programme, with signposting to specialist services and partners where needed. Safeguarding is built into every session.","see":["Protective factors are stronger: confidence, supportive relationships and safety knowledge","Participants know the support routes and use them"],"meas":"Not shown by attendance alone. Evidenced through participant voice, case studies and partner feedback"},
+  {"id":"sis_l2","stage":"lng","prog":"sisters","title":"Stronger futures","short":"Healthy, active and moving into education, leadership or work","outcomes":["O1","O5"],"desc":"Lasting wellbeing, and progression into education, volunteering, leadership or employment, including community ambassador roles.\n\nParticipants can move into wider Steel Warriors opportunities and employability support, or be signposted to specialist services and partner opportunities where appropriate.","source":"Steel Sisters programme plan","like":["l4"],"wk":"Progression routes after the programme: wider Steel Warriors opportunities, volunteering, leadership, employability support and community ambassador roles.","see":["Participants move into volunteering, leadership, education or work routes","They stay connected to Steel Warriors"],"meas":"Progression into wider Steel Warriors, education, volunteering, leadership or employment"},
+  {"id":"fw_e1","stage":"stm","prog":"future","title":"Engaged and building trust","short":"Turn up, feel safe and start to trust a coach-mentor","outcomes":["O3"],"desc":"Young people take part in positive activity and begin to trust a consistent coach-mentor.\n\nFuture Warriors uses sport as the point of engagement and relationships as the foundation for change. The first sessions (Engage and Build Trust) cover a safe space, goals, teamwork, trusted adults and belonging. Young people may be affected by, or at heightened risk of, serious violence, criminal exploitation or exclusion, so the first aim is somewhere to go and someone trusted to talk to.","source":"Future Warriors programme plan","like":["s1"],"wk":"Week 1, Engage: welcome, baseline, goals and positive activity. Week 2, Build Trust: relationships, teamwork, trusted adults and belonging.","see":["They return week after week","They talk with their coach-mentor"],"meas":"Registration, demographics and attendance"},
+  {"id":"fw_e2","stage":"stm","prog":"future","title":"Calmer under stress","short":"First gains in confidence and handling stress","outcomes":["O2"],"desc":"First gains in confidence, self-esteem and the ability to respond to stress.\n\nSessions on resilience cover stress, setbacks, emotional regulation and coping, with trauma-aware coping in the 12-week plan. Each session ends with reflection and a small next step.","source":"Future Warriors programme plan","like":["s2"],"wk":"Week 4, Resilience: stress, setbacks, emotional regulation and coping.","see":["They use a coping strategy when something goes wrong","They take on challenges in the session"],"meas":"Baseline and follow-up wellbeing and confidence measures"},
+  {"id":"fw_e3","stage":"stm","prog":"future","title":"Spot risk and know where to turn","short":"Recognise harmful situations and know the support routes","outcomes":["O4"],"desc":"Young people learn to recognise risk, harmful peer influence and exploitation, and know where to ask for help.\n\nChoices & Consequences covers decision-making and recognising harmful situations. Staying Safe covers exploitation awareness, harmful peer associations, online and contextual safety and support routes. Contextual safeguarding is embedded throughout, with particular attention to serious violence, criminal exploitation, county lines, postcode conflict and online harm.","source":"Future Warriors programme plan","like":["s3"],"measures":["S4"],"research":["X13"],"wk":"Week 5, Choices & Consequences: decision-making, risk and recognising harmful situations. Week 6, Staying Safe: exploitation awareness, harmful peer associations, online and contextual safety and support routes.","see":["They can name risky situations and what to do","They know who to ask for support"],"meas":"Young person feedback; safeguarding and referral information, recorded appropriately"},
+  {"id":"fw_m1","stage":"mid","prog":"future","title":"Wellbeing and confidence","short":"Better mental wellbeing, self-esteem and response to stress","outcomes":["O1","O2"],"desc":"Improved mental wellbeing, confidence, self-esteem and ability to respond to stress.\n\nThe programme measures this with a baseline in the first week and follow-up wellbeing and confidence measures, alongside young person feedback.","source":"Future Warriors programme plan","like":["m1","m2"],"wk":"Week 1 baseline, Week 4 Resilience and the Week 8 final review.","see":["Self-rated wellbeing and confidence are higher at follow-up","They respond to stress with more control"],"meas":"Baseline and follow-up wellbeing and confidence measures"},
+  {"id":"fw_m2","stage":"mid","prog":"future","title":"Positive relationships","short":"Trusted adults and positive peers","outcomes":["O3"],"desc":"Stronger positive relationships with peers and with trusted adults.\n\nSessions cover listening, conflict, asking for help and positive influence; the 12-week plan adds teamwork, leadership and peer support. Informal mentoring in each session builds the relationship with the coach, which can continue after the block where mentoring is commissioned.","source":"Future Warriors programme plan","like":["m3"],"wk":"Week 2, Build Trust, and Week 3, Communication: listening, conflict, asking for help and positive influence.","see":["A positive relationship with a trusted adult","Positive friendships and peer support"],"meas":"Young person feedback; partner and parent or carer feedback where appropriate"},
+  {"id":"fw_m3","stage":"mid","prog":"future","title":"Protective factors against harm","short":"Positive activity and less exposure to harmful peer influence and exploitation","outcomes":["O4"],"desc":"More engagement in positive activity and less vulnerability to harmful influences, exploitation and violence.\n\nThis is the programme's protective-factors outcome. Higher-risk young people can be referred into specialist intensive mentoring through an agreed pathway, and safeguarding and referral information is recorded appropriately.","source":"Future Warriors programme plan","measures":["S4"],"research":["X13","X4","X7"],"wk":"Weeks 5 and 6. Higher-risk young people can be referred into specialist intensive mentoring alongside the community programme.","see":["They choose positive activity over harmful peer influence","They seek help when exposed to risk"],"meas":"Mentoring activity where it applies; safeguarding and referral information; case studies"},
+  {"id":"fw_m4","stage":"mid","prog":"future","title":"Life skills and aspiration","short":"Communication, teamwork, leadership, decision-making, ambition","outcomes":["O2","O5"],"desc":"Better communication, teamwork, emotional regulation, leadership and decision-making, with more motivation and achievable goals.\n\nThese life skills are practised through team challenges and peer-support roles, and tied to the individual goals and progression plans set at the start.","source":"Future Warriors programme plan","research":["X2"],"wk":"Week 3 Communication, Week 5 Choices and Week 7 Aspiration. The 12-week plan adds Teamwork & Leadership (positive influence, responsibility, peer support) in Week 5.","see":["They communicate and work in a team","They set achievable goals and describe an ambition"],"meas":"Individual goals and progression plans; young person feedback"},
+  {"id":"fw_m5","stage":"mid","prog":"future","title":"Progression to education, training or specialist support","short":"Next steps, mentoring and referral","outcomes":["O5"],"desc":"More engagement with education, employment, training, mentoring or specialist support.\n\nThe final weeks cover aspiration, a progression plan and connection to further support, including referrals. Young people can move into specialist mentoring, education, training and employment support, volunteering, leadership, wider Steel Warriors programmes or other specialist services.","source":"Future Warriors programme plan","measures":["G3","E2"],"research":["X6"],"wk":"Week 7, Aspiration (education, training, employment, leadership) and Week 8, Progress: final review, progression plan and connection to further support.","see":["A progression plan is agreed","They move into mentoring, training, education or specialist support"],"meas":"Education, training and employment progression; individual goals and progression plans"},
+  {"id":"fw_l1","stage":"lng","prog":"future","title":"Reduced vulnerability to serious violence and exploitation","short":"A contribution, claimed only where evidenced","outcomes":["O4"],"desc":"Future Warriors strengthens the protective factors that contribute to reducing vulnerability to serious violence, exploitation and offending. Risk reduction is claimed only where it can be evidenced.\n\nThe programme monitors participation together with changes in wellbeing, protective factors, relationships, aspirations and progression, so any claim rests on more than attendance.","source":"Future Warriors programme plan","like":["l2"],"wk":"The whole programme. Where specialist mentoring is commissioned it can continue beyond the 4, 8 or 12 week block.","see":["Protective factors are stronger across wellbeing, relationships and engagement","Risk reduction is claimed only where it can be evidenced"],"meas":"Participation, wellbeing, protective-factor and progression data together, with case studies"},
+  {"id":"fw_l2","stage":"lng","prog":"future","title":"Positive progression","short":"Education, training and work","outcomes":["O5"],"desc":"Young people move on to education, training or employment, with a continuing relationship with Steel Warriors where they want one.\n\nThe pathway is Engage, Build Trust, Assess Need, Mentor, Develop, Progress. Where specialist mentoring is commissioned it may continue beyond the 4, 8 or 12 week community block.","source":"Future Warriors programme plan","like":["l4"],"wk":"The pathway after the programme: Engage, Build Trust, Assess Need, Mentor, Develop, Progress.","see":["Young people are in education, training or employment","They keep a continuing relationship with Steel Warriors where they want one"],"meas":"Education, training and employment progression"},
+  {"id":"sch_e1","stage":"stm","prog":"schools","title":"Willing to try something new","short":"A different kind of lesson and first confidence gains","outcomes":["O2"],"desc":"Young people who may not connect with traditional sport or classroom wellbeing work take part and try unfamiliar activities.\n\nSteel in Schools is not a traditional PE lesson. Every session links a physical challenge to a personal-development theme, using movement, team challenges, mentoring, discussion and reflection.","source":"Steel in Schools programme plan","like":["s2"],"wk":"Every session links a physical challenge to a personal-development theme, starting with SELF.","see":["They try unfamiliar activities","They join in rather than watch"],"meas":"Attendance and engagement; coach observations"},
+  {"id":"sch_e2","stage":"stm","prog":"schools","title":"Part of a team","short":"Feel included and safe to take part","outcomes":["O3"],"desc":"Team challenges help young people feel included and safe to take part.\n\nThe programme is built on five foundations: self, team, mind, community and future. The team foundation focuses on communication, teamwork and leadership, and inclusion and safe participation are promoted throughout.","source":"Steel in Schools programme plan","like":["s1"],"wk":"The TEAM foundation: team challenges, discussion and reflection.","see":["They work with others on a team challenge","They feel safe to take part"],"meas":"Attendance and engagement; coach observations"},
+  {"id":"sch_e3","stage":"stm","prog":"schools","title":"A trusted adult outside the classroom","short":"Coaches who listen, within clear safeguarding boundaries","outcomes":["O3"],"desc":"Coaches act as trusted adults outside the classroom while keeping clear safeguarding and professional boundaries.\n\nThis matters for young people who would benefit from positive relationships and a different route into personal development. Teacher and partner feedback is collected alongside coach observations.","source":"Steel in Schools programme plan","like":["s3"],"wk":"Coaches act as trusted adults outside the classroom, within clear safeguarding and professional boundaries.","see":["They talk to the coach","They can name a trusted adult"],"meas":"Trusted-adult and belonging measures"},
+  {"id":"sch_m1","stage":"mid","prog":"schools","title":"Stronger self","short":"Confidence, self-esteem and resilience","outcomes":["O2"],"desc":"Improved confidence, self-esteem, resilience and willingness to try unfamiliar activities.\n\nProgress is tracked with baseline and end confidence and wellbeing questions, participant reflection and goal tracking.","source":"Steel in Schools programme plan","like":["m2"],"wk":"The SELF foundation across the programme.","see":["Self-rated confidence and resilience are higher at the end","They are willing to try unfamiliar activities"],"meas":"Baseline and end confidence and wellbeing questions; participant reflection and goal tracking"},
+  {"id":"sch_m2","stage":"mid","prog":"schools","title":"Stronger relationships","short":"Communication, teamwork, leadership and trust","outcomes":["O3"],"desc":"Better communication, teamwork, leadership, trust and positive relationships.\n\nTeacher and partner feedback and coach observations show how young people work with others as the programme goes on.","source":"Steel in Schools programme plan","research":["X2"],"wk":"The TEAM foundation.","see":["They communicate clearly in a group","They take a leadership role in a challenge"],"meas":"Teacher and partner feedback; coach observations"},
+  {"id":"sch_m3","stage":"mid","prog":"schools","title":"Stronger connection","short":"Belonging, inclusion and access to trusted adults","outcomes":["O3"],"desc":"Greater belonging, inclusion, participation and access to trusted adults.\n\nThe programme measures trusted-adult and belonging outcomes directly, rather than assuming them from attendance.","source":"Steel in Schools programme plan","like":["m3"],"wk":"The COMMUNITY foundation.","see":["They feel they belong in the group","They know a trusted adult"],"meas":"Trusted-adult and belonging measures"},
+  {"id":"sch_m4","stage":"mid","prog":"schools","title":"Wellbeing and healthy coping","short":"Understand their own wellbeing and ways to cope","outcomes":["O1"],"desc":"A better understanding of personal wellbeing and healthy coping strategies.\n\nThe programme measures the protective factors around a young person. It does not claim that a short intervention will fix mental health.","source":"Steel in Schools programme plan","like":["m1"],"wk":"The MIND foundation.","see":["They can describe their own wellbeing","They can name healthy coping strategies"],"meas":"Baseline and end confidence and wellbeing questions"},
+  {"id":"sch_m5","stage":"mid","prog":"schools","title":"A brighter future","short":"Aspiration and engagement with education, training and community","outcomes":["O5"],"desc":"Higher aspirations and a better understanding of progression routes, with more engagement in education, training and community opportunities.\n\nThe future foundation connects young people to next steps in school, community or Steel Warriors opportunities, and builds employability skills.","source":"Steel in Schools programme plan","measures":["G3"],"wk":"The FUTURE foundation.","see":["They can describe a progression route","They take up education, training or community opportunities"],"meas":"Progression into school, community or Steel Warriors opportunities"},
+  {"id":"sch_l1","stage":"lng","prog":"schools","title":"Greater inclusion","short":"Young people who miss out on traditional sport take part","outcomes":["O6"],"desc":"More young people who may be disengaged from traditional sport take part and feel included.\n\nSteel Warriors plans to take the model into Westminster schools and colleges, with 200 young people planned, using calisthenics as an engagement tool.","source":"Steel in Schools programme plan","like":["l3"],"wk":"The whole programme, delivered with schools, colleges and alternative provision.","see":["More young people who miss out on traditional sport take part"],"meas":"Attendance and engagement; teacher and partner feedback"},
+  {"id":"sch_l2","stage":"lng","prog":"schools","title":"Positive next steps","short":"Stronger engagement with education and community","outcomes":["O5"],"desc":"Stronger protective factors and more engagement with school, college and community. The programme does not claim to fix mental health or attendance.\n\nThe 8-week programme covering all five foundations is the recommended standard for schools and colleges; 12 weeks suits targeted cohorts or schools wanting sustained intervention.","source":"Steel in Schools programme plan","like":["l4"],"wk":"Progression into school, community or Steel Warriors opportunities after the programme.","see":["Stronger engagement with education and community","A move into Steel Warriors or community opportunities"],"meas":"Progression into school, community or Steel Warriors opportunities. The programme does not claim to fix attendance"},
+  {"id":"bb_e1","stage":"stm","prog":"barriers","title":"Welcome and able to take part","short":"Sessions adapted to the person; participation before performance","outcomes":["O3"],"desc":"Sessions are adapted to the participant rather than expecting the participant to fit a standard session, so everyone can take part.\n\nThe principle is participation before performance. No previous sporting experience is required, and the programme is for young people aged 11 to 25 with SEND, disabilities, neurodiversity, sensory impairments or long-term health conditions.","source":"Beyond Barriers programme plan","like":["s1"],"wk":"Week 1, Welcome & Discover: strengths, preferences, support needs and personal goals. Sessions are adapted to the person.","see":["They take part in a way that suits them","Coaches know their preferences"],"meas":"Attendance and engagement; coach observations"},
+  {"id":"bb_e2","stage":"stm","prog":"barriers","title":"Trying new movement","short":"Willingness to try and pride in first achievements","outcomes":["O2"],"desc":"First willingness to try new activities and first pride in what they achieve.\n\nWeekly themes include Move My Way and Confidence (trying new activities, choice and celebrating achievement), and each session ends by recognising progress and setting a small next step.","source":"Beyond Barriers programme plan","like":["s2"],"wk":"Week 4, Confidence: trying new activities, choice and celebrating achievement.","see":["They try an activity they have not tried before","They show pride in a personal achievement"],"meas":"Coach observations; participant feedback using accessible methods"},
+  {"id":"bb_e3","stage":"stm","prog":"barriers","title":"Understood by coaches","short":"Preferences, communication and support needs are known","outcomes":["O3"],"desc":"Coaches understand each person's strengths, communication preferences, access and sensory needs, and become a trusted adult.\n\nBefore delivery, coaches also consider emotional wellbeing, learning styles, personal goals and relevant health considerations. Appropriate consent, risk assessment, staffing and partner information-sharing are in place.","source":"Beyond Barriers programme plan","like":["s3"],"wk":"Before delivery and in Week 1: communication preferences, mobility and access needs, sensory needs and health considerations.","see":["Their communication preferences are recorded and used","A parent, carer or support worker confirms their needs are understood"],"meas":"Parent, carer or support-worker feedback where appropriate"},
+  {"id":"bb_m1","stage":"mid","prog":"barriers","title":"Confidence and self-esteem","short":"Self-belief, willingness to take part, pride in achievement","outcomes":["O2"],"desc":"Greater self-esteem, willingness to take part and pride in achievement.\n\nProgress is recorded against individual baseline and end goals rather than a standard benchmark, and celebrated through case studies and personal achievements.","source":"Beyond Barriers programme plan","like":["m2"],"wk":"Weeks 4 and 8.","see":["They are more willing to take part","They express pride in what they achieve"],"meas":"Individual baseline and end goals; participant feedback using accessible methods"},
+  {"id":"bb_m2","stage":"mid","prog":"barriers","title":"Physical wellbeing and healthy routines","short":"Strength, mobility and coordination against personal goals","outcomes":["O1"],"desc":"Improved strength, movement, mobility, coordination or fitness relative to each person's goals, and more confidence to stay active.\n\nSessions cover adapted strength and functional movement, balance and coordination, and wellbeing (movement, breathing and healthy routines). Where suitable, physical wellbeing or functional goals are tracked.","source":"Beyond Barriers programme plan","like":["m1"],"measures":["P5"],"wk":"Week 2 Move My Way, Week 3 Balance & Coordination and Week 6 Wellbeing (movement, breathing, healthy routines).","see":["Progress against their own strength, mobility or coordination goal","They enjoy movement and keep active"],"meas":"Physical wellbeing or functional goals where suitable"},
+  {"id":"bb_m3","stage":"mid","prog":"barriers","title":"Independence and choice","short":"More choice and ability to take part with the right support","outcomes":["O2"],"desc":"Greater choice, confidence and ability to take part, with appropriate support.\n\nThe independence session covers making choices, setting goals and taking ownership of participation; the 12-week plan adds a participant-led personal challenge.","source":"Beyond Barriers programme plan","measures":["P5"],"wk":"Week 7, Independence: making choices, setting goals and taking ownership of participation.","see":["They make their own choices in sessions","They set a goal and take ownership of it"],"meas":"Individual baseline and end goals; coach observations"},
+  {"id":"bb_m4","stage":"mid","prog":"barriers","title":"Social connection and belonging","short":"Less isolation, better communication, friendships","outcomes":["O3"],"desc":"Reduced isolation, better communication, new friendships and a feeling of being welcomed, valued and part of a community.\n\nTeam games, partner activities and peer support build communication and friendship. These classes have been especially important for families where typical sports provision is difficult.","source":"Beyond Barriers programme plan","like":["m3"],"wk":"Week 5, Communication (team games, expressing needs), and Week 8, Belonging (community challenge, review and celebration).","see":["Friendships form in the group","They express their needs to others"],"meas":"Participant feedback using accessible methods; parent, carer or support-worker feedback"},
+  {"id":"bb_l1","stage":"lng","prog":"barriers","title":"Included in community life","short":"Young people with SEND take part and belong","outcomes":["O6"],"desc":"Young people with SEND and additional needs take part in, and feel part of, their community.\n\nBelonging is the end point of the programme: a community challenge, progress review and celebration close it, with a plan for what comes next.","source":"Beyond Barriers programme plan","like":["l3"],"wk":"Week 8, Belonging: community challenge, progress review, celebration and next steps.","see":["They take part in community activity and feel welcomed"],"meas":"Case studies and celebration of personal achievements; parent or carer feedback"},
+  {"id":"bb_l2","stage":"lng","prog":"barriers","title":"Lasting, enjoyable physical activity","short":"Continued inclusive activity at their own pace","outcomes":["O1"],"desc":"Continued inclusive physical activity, with continuity and individual choice prioritised.\n\nProgression may include continued inclusive activity, wider Steel Warriors opportunities, community participation or referral to suitable specialist provision. The 12-week option suits participants who benefit from consistency and longer-term support.","source":"Beyond Barriers programme plan","like":["l4"],"wk":"Week 8 continuation plan. Progression can include continued inclusive activity, wider Steel Warriors opportunities or signposting to specialist provision.","see":["They continue inclusive activity at their own pace"],"meas":"Attendance and continued participation"},
+  {"id":"mo_e1","stage":"stm","prog":"motion","title":"Know their own movement","short":"Body awareness, posture and safe technique","outcomes":["O1"],"desc":"Participants become more aware of their body, posture and safe technique.\n\nSteel in Motion is a strength, conditioning and injury-prevention programme for young people who dance or play other sports. It complements their main activity rather than replacing it. Week one takes a baseline and sets individual movement goals.","source":"Steel in Motion programme plan","wk":"Week 1, Know Your Movement: baseline, body awareness, movement quality and individual goals.","see":["They can describe their own posture and movement habits","They set a movement goal"],"meas":"Baseline and end-of-programme knowledge questions; coach observations"},
+  {"id":"mo_e2","stage":"stm","prog":"motion","title":"First strength and control gains","short":"Core strength, balance and coordination","outcomes":["O1"],"desc":"First gains in core strength, balance, coordination and control.\n\nThe early weeks cover core stability, posture and bracing, then squat, lunge and single-leg patterns for jumping, running and dance, then push, pull, shoulder stability and grip.","source":"Steel in Motion programme plan","measures":["P5"],"wk":"Weeks 2 to 4: core stability and posture, lower-body strength (squat and lunge patterns) and upper-body strength (push, pull, shoulder stability).","see":["They hold a stable core position","They control squat and lunge patterns"],"meas":"Individual movement and strength goals; coach observations of technique"},
+  {"id":"mo_e3","stage":"stm","prog":"motion","title":"Confidence trying physical challenges","short":"Willing to try new skills","outcomes":["O2"],"desc":"Participants feel more confident trying physical challenges and understanding their own body.\n\nActivities are scaled to the individual, with the emphasis on quality of movement and gradual progression. No previous calisthenics experience is needed.","source":"Steel in Motion programme plan","like":["s2"],"wk":"Week 1 baseline and the Week 8 final integrated challenge; challenges get progressively harder.","see":["They try new physical challenges","They can explain how their body responds"],"meas":"Baseline and end-of-programme confidence questions"},
+  {"id":"mo_m1","stage":"mid","prog":"motion","title":"Stronger body","short":"Strength, muscular endurance and core stability","outcomes":["O1"],"desc":"Greater strength, muscular endurance, core stability and physical capacity.\n\nIn practice this is whole-body strength built through progressive calisthenics: core stability, posture and bracing in week two; lower-body squat and lunge patterns and single-leg control in week three; and upper-body push, pull, shoulder stability and grip in week four. The 12-week programme adds a safe introduction to power and repeated effort, and training under fatigue, where the aim is to keep technique as quality drops.\n\nThe aim is a body better able to cope with the demands of the participant's own dance or sport, not performance in calisthenics for its own sake. Progress is measured against each person's own movement and strength goals, with coach observations of technique, control and progression. Activities are adapted to ability.","source":"Steel in Motion programme plan","like":["m1"],"wk":"Weeks 2 to 4.","see":["A stronger core, lower body and upper body","They repeat efforts with good technique"],"meas":"Individual movement and strength goals"},
+  {"id":"mo_m2","stage":"mid","prog":"motion","title":"Better movement quality","short":"Balance, coordination, mobility and control","outcomes":["O1"],"desc":"Improved balance, coordination, mobility, control and movement quality.\n\nSessions cover dynamic mobility, flexibility and usable range of motion, then landing mechanics, balance, coordination and deceleration; the 12-week plan adds proprioception and rhythm. Quality of movement matters more than the amount of effort.","source":"Steel in Motion programme plan","wk":"Week 5, Mobility & Range, and Week 6, Land, Balance, Control: landing mechanics, balance, coordination and deceleration.","see":["They land and change direction with control","They have a wider usable range of movement"],"meas":"Coach observations of technique, control and progression"},
+  {"id":"mo_m3","stage":"mid","prog":"motion","title":"Injury awareness and safe training habits","short":"Warm-up, recovery and safe progression","outcomes":["O1"],"desc":"A better understanding of warm-up, recovery, rest, safe progression and common injury-risk factors, and sustainable training routines.\n\nWeek seven covers warm-up, cool-down, rest, recognising fatigue and responding to setbacks; the 12-week plan adds sleep and managing training load. Coaches work within their competence and do not diagnose or treat injuries. Anyone reporting pain or injury is supported to stop or modify the activity and, where appropriate, to seek advice from a parent or carer, school or healthcare professional.","source":"Steel in Motion programme plan","measures":["P6"],"wk":"Week 7, Recovery & Resilience: warm-up, cool-down, rest and recognising fatigue. Week 6 covers landing mechanics.","see":["They warm up and cool down without prompting","They recognise fatigue and stop or modify"],"meas":"Participant reflection on warm-up, recovery and injury prevention; knowledge questions"},
+  {"id":"mo_m4","stage":"mid","prog":"motion","title":"Confidence and transfer to dance or sport","short":"See how strength supports their chosen activity","outcomes":["O2"],"desc":"More confidence, and an understanding of how strength and conditioning support performance in their chosen dance or sport.\n\nEvery session includes a dance or sport transfer challenge that connects the learning to performance, and the 12-week programme adds a full week on applying strength and movement skills to the participant's own activity. Dance teachers and sports coaches can give feedback.","source":"Steel in Motion programme plan","like":["m2"],"research":["X10"],"wk":"Week 8, Stronger in Motion. The 12-week plan adds Week 11, Transfer to Performance: applying strength and movement skills to dance or their chosen sport.","see":["They apply a strength or movement skill in their dance or sport","They can say how conditioning supports their chosen activity"],"meas":"Dance teacher or sports coach feedback where appropriate; confidence questions"},
+  {"id":"mo_l1","stage":"lng","prog":"motion","title":"Safer, longer-term participation in dance and sport","short":"Reduces avoidable injury risk; cannot promise it","outcomes":["O1"],"desc":"Protective factors that reduce avoidable injury risk and support safer participation. The programme does not promise that injury can always be prevented.\n\nIt measures changes in physical confidence, knowledge and movement foundations, not injuries avoided.","source":"Steel in Motion programme plan","wk":"The whole programme, including warm-up, recovery and safe progression habits.","see":["They build habits that reduce avoidable injury risk"],"meas":"Knowledge, confidence and partner feedback. Not injuries avoided: the programme does not promise injury can always be prevented"},
+  {"id":"mo_l2","stage":"lng","prog":"motion","title":"Continued physical activity","short":"And links to wider Steel Warriors opportunities","outcomes":["O1","O3"],"desc":"Continued physical activity, with onward links to Steel Warriors sessions and to leadership or progression opportunities.\n\nParticipants finish with an individual understanding of the strength, mobility and recovery habits that support their chosen activity.","source":"Steel in Motion programme plan","like":["l4"],"wk":"The Week 8 individual progression plan, with links to Steel Warriors sessions.","see":["They continue physical activity","They connect to Steel Warriors sessions or leadership opportunities"],"meas":"Progression into continued physical activity and Steel Warriors opportunities"},
+  {"id":"mad_e1","stage":"stm","prog":"made","title":"Recognise their own strengths","short":"Think positively about what comes next (Steel Works)","outcomes":["O2"],"desc":"Young people begin to recognise their own strengths and think positively about what comes next.\n\nThis is the first outcome of Steel Works: sport with mentoring, goal setting and a Dragon's Den-style pitch that turns an idea into a confident presentation.","source":"Growth, Impact and Progression 2026 (Made of Steel)","like":["s2"],"wk":"Steel Works (stage one): sport with mentoring, goal setting and a Dragon's Den-style pitch.","see":["They can describe their own strengths","They present an idea in a pitch"],"meas":"Programme starts and completions by stage"},
+  {"id":"mad_e2","stage":"stm","prog":"made","title":"Practical job-search skills","short":"Applications, CVs, budgeting and presentation","outcomes":["O5"],"desc":"First practical skills in job search, CV writing, budgeting and presenting ideas with confidence.\n\nSteel Works covers how to search and apply for employment and communicate personal strengths, CV writing, personal budgeting and financial management, exploring business ideas, and communication, teamwork and presentation skills.","source":"Growth, Impact and Progression 2026 (Made of Steel)","measures":["E2"],"wk":"Steel Works: job search and applications, CV writing, personal budgeting, business ideas and presentation skills.","see":["A completed CV","A completed application and a pitch"],"meas":"Programme starts and completions by stage"},
+  {"id":"mad_e3","stage":"stm","prog":"made","title":"A mentor who backs them","short":"One-to-one mentoring on progress and next steps","outcomes":["O3"],"desc":"Regular one-to-one mentoring on progress, challenges, aspirations and next steps.\n\nIn Steel Futures, support also removes practical barriers such as travel and food costs while young people attend full-time training.","source":"Growth, Impact and Progression 2026 (Made of Steel)","like":["s3"],"wk":"Steel Futures (stage two): regular one-to-one mentoring, plus support with practical barriers such as travel and food costs.","see":["One-to-one mentoring sessions take place regularly","Practical barriers to attending are removed"],"meas":"One-to-one mentoring records"},
+  {"id":"mad_m1","stage":"mid","prog":"made","title":"Skills","short":"Employability and money skills, communication, teamwork","outcomes":["O5"],"desc":"Practical employability and financial skills, with communication, teamwork and presentation. Counted separately from qualifications and from employment.\n\nA young person who completes Steel Works can recognise their strengths, think positively about the future and progress into Steel Futures. Gaining skills does not guarantee a qualification or a job, so each step is tracked on its own.","source":"Growth, Impact and Progression 2026 (Made of Steel)","measures":["E2"],"wk":"Steel Works (stage one).","see":["They complete Steel Works","They progress into Steel Futures"],"meas":"Programme starts and completions by stage"},
+  {"id":"mad_m2","stage":"mid","prog":"made","title":"A recognised qualification","short":"Level 2 Gym Instructor (Steel Futures)","outcomes":["O5"],"desc":"A recognised Level 2 Gym Instructor qualification. 11 young people completed it; a 98% success rate is reported and its calculation is being documented.\n\nSteel Futures is full-time learning that combines physical activity, classroom teaching and academic coursework, with a required examination. It develops the knowledge and practical skills to work in the physical activity sector.","source":"Growth, Impact and Progression 2026 (Made of Steel)","measures":["G1","G2"],"research":["X6"],"wk":"Steel Futures: a two-week, full-time Level 2 Gym Instructor qualification with coursework and an examination.","see":["The Level 2 Gym Instructor qualification is achieved","Starters and passes are both counted"],"meas":"Qualifications achieved, with starters shown alongside (11 completed so far; 98% reported)"},
+  {"id":"mad_m3","stage":"mid","prog":"made","title":"Paid work experience and paid roles","short":"Paid placements and sessional work as a Steel Assistant","outcomes":["O5"],"desc":"Paid work experience, then paid sessional work alongside lead coaches. Only some of those who gain a qualification take this step.\n\nPaid work experience is within Steel Warriors and/or a delivery partner, turning the qualification into real workplace experience. Following Steel Futures, participants can apply to become a Steel Assistant.","source":"Growth, Impact and Progression 2026 (Made of Steel)","measures":["G4"],"research":["X6"],"wk":"Paid work experience in Steel Futures, then paid sessional work alongside lead coaches in Steel Assistants (stage three).","see":["A paid placement is completed","Paid Steel Assistant sessions are delivered"],"meas":"Paid work experience and Steel Assistant roles (proposed measure G4)"},
+  {"id":"mad_m4","stage":"mid","prog":"made","title":"Leadership and professional confidence","short":"Coaching, session planning and safeguarding practice","outcomes":["O2","O5"],"desc":"Practical coaching ability, session planning, communication, time management and safeguarding awareness.\n\nSteel Assistants deliver in pairs with lead coaches, gaining practical capability and professional confidence through real-world delivery experience.","source":"Growth, Impact and Progression 2026 (Made of Steel)","measures":["G4"],"wk":"Steel Assistants: paired delivery with lead coaches, building coaching, session planning, communication, time management and safeguarding practice.","see":["They plan and lead part of a session","They follow safeguarding practice"],"meas":"Paid work experience and Steel Assistant roles (proposed measure G4)"},
+  {"id":"mad_l1","stage":"lng","prog":"made","title":"Progression to education, work or training","short":"Counted separately from qualifications","outcomes":["O5"],"desc":"Young people in work, education or training after the programme. This is a smaller group than those who gain skills or a qualification, and is tracked on its own.\n\nThe pathway runs from a young person facing barriers, to skills, a qualification, experience and a paid opportunity. Destinations are not yet tracked; follow-up at 3 and 6 months is proposed.","source":"Growth, Impact and Progression 2026 (Made of Steel)","like":["l4"],"measures":["G3"],"wk":"After the programme. Destinations are followed up with completers.","see":["They are in work, education or training at 3 and 6 months"],"meas":"Destinations at 3 and 6 months (proposed measure G3)"},
+  {"id":"mad_l2","stage":"lng","prog":"made","title":"A new generation of trusted adults","short":"Programme graduates coach the next young people","outcomes":["O3","O6"],"desc":"Young people who came through Steel Warriors become the trusted adults and role models who engage the next generation.\n\nThis is the longer-term value of Steel Assistants: people who have travelled through the programmes coach the next young people, so participants become leaders.","source":"Growth, Impact and Progression 2026 (Made of Steel)","wk":"Steel Assistants: young people who came through the programmes work alongside coaches with the next cohort.","see":["Former participants coach new participants"],"meas":"Paid Steel Assistant roles held by former participants"}
+ ],
+ "edges":[
+  ["i1","a1"],
+  ["i2","a1"],
+  ["i2","a2"],
+  ["i2","a4"],
+  ["i3","a3"],
+  ["i3","a4"],
+  ["a1","o1"],
+  ["a2","o1"],
+  ["a3","o1"],
+  ["a4","o1"],
+  ["a1","o2"],
+  ["a2","o2"],
+  ["a3","o3"],
+  ["a4","o3"],
+  ["o1","s1"],
+  ["o1","s2"],
+  ["o2","s3"],
+  ["o3","s2"],
+  ["o3","s3"],
+  ["s1","m3"],
+  ["s1","m1"],
+  ["s2","m1"],
+  ["s2","m2"],
+  ["s3","m3"],
+  ["s3","m2"],
+  ["s2","m4"],
+  ["o3","m4"],
+  ["m1","l4"],
+  ["m2","l4"],
+  ["m2","l2"],
+  ["m3","l1"],
+  ["m3","l2"],
+  ["m3","l3"],
+  ["m4","m5"],
+  ["m5","l4"],
+  ["o1","sis_e1","sisters"],
+  ["o1","sis_e2","sisters"],
+  ["o1","sis_e3","sisters"],
+  ["o2","sis_e1","sisters"],
+  ["sis_e1","sis_m2","sisters"],
+  ["sis_e1","sis_m1","sisters"],
+  ["sis_e2","sis_m1","sisters"],
+  ["sis_e2","sis_m4","sisters"],
+  ["sis_e2","sis_m5","sisters"],
+  ["sis_e3","sis_m3","sisters"],
+  ["sis_e3","sis_m2","sisters"],
+  ["sis_m3","sis_l1","sisters"],
+  ["sis_m2","sis_l1","sisters"],
+  ["sis_m1","sis_l2","sisters"],
+  ["sis_m5","sis_l2","sisters"],
+  ["sis_m4","sis_l2","sisters"],
+  ["o1","fw_e1","future"],
+  ["o1","fw_e2","future"],
+  ["o1","fw_e3","future"],
+  ["o3","fw_e3","future"],
+  ["fw_e1","fw_m2","future"],
+  ["fw_e1","fw_m1","future"],
+  ["fw_e2","fw_m1","future"],
+  ["fw_e2","fw_m4","future"],
+  ["fw_e3","fw_m3","future"],
+  ["fw_e3","fw_m5","future"],
+  ["fw_m2","fw_l1","future"],
+  ["fw_m3","fw_l1","future"],
+  ["fw_m1","fw_l2","future"],
+  ["fw_m4","fw_l2","future"],
+  ["fw_m5","fw_l2","future"],
+  ["o1","sch_e1","schools"],
+  ["o1","sch_e2","schools"],
+  ["o1","sch_e3","schools"],
+  ["o2","sch_e2","schools"],
+  ["sch_e1","sch_m1","schools"],
+  ["sch_e1","sch_m5","schools"],
+  ["sch_e2","sch_m2","schools"],
+  ["sch_e2","sch_m3","schools"],
+  ["sch_e3","sch_m3","schools"],
+  ["sch_e3","sch_m4","schools"],
+  ["sch_m3","sch_l1","schools"],
+  ["sch_m2","sch_l1","schools"],
+  ["sch_m5","sch_l2","schools"],
+  ["sch_m1","sch_l2","schools"],
+  ["sch_m4","sch_l2","schools"],
+  ["o1","bb_e1","barriers"],
+  ["o1","bb_e2","barriers"],
+  ["o1","bb_e3","barriers"],
+  ["o2","bb_e1","barriers"],
+  ["bb_e1","bb_m4","barriers"],
+  ["bb_e1","bb_m1","barriers"],
+  ["bb_e2","bb_m1","barriers"],
+  ["bb_e2","bb_m2","barriers"],
+  ["bb_e2","bb_m3","barriers"],
+  ["bb_e3","bb_m3","barriers"],
+  ["bb_e3","bb_m4","barriers"],
+  ["bb_m4","bb_l1","barriers"],
+  ["bb_m3","bb_l1","barriers"],
+  ["bb_m2","bb_l2","barriers"],
+  ["bb_m3","bb_l2","barriers"],
+  ["bb_m1","bb_l2","barriers"],
+  ["o1","mo_e1","motion"],
+  ["o1","mo_e2","motion"],
+  ["o1","mo_e3","motion"],
+  ["o2","mo_e3","motion"],
+  ["mo_e1","mo_m3","motion"],
+  ["mo_e1","mo_m2","motion"],
+  ["mo_e2","mo_m1","motion"],
+  ["mo_e2","mo_m2","motion"],
+  ["mo_e3","mo_m4","motion"],
+  ["mo_e3","mo_m1","motion"],
+  ["mo_m1","mo_l1","motion"],
+  ["mo_m2","mo_l1","motion"],
+  ["mo_m3","mo_l1","motion"],
+  ["mo_m4","mo_l2","motion"],
+  ["mo_m1","mo_l2","motion"],
+  ["o3","mad_e1","made"],
+  ["o3","mad_e2","made"],
+  ["o3","mad_e3","made"],
+  ["o2","mad_e1","made"],
+  ["mad_e1","mad_m4","made"],
+  ["mad_e2","mad_m1","made"],
+  ["mad_e3","mad_m2","made"],
+  ["mad_e3","mad_m3","made"],
+  ["mad_m1","mad_l1","made"],
+  ["mad_m2","mad_l1","made"],
+  ["mad_m3","mad_l1","made"],
+  ["mad_m3","mad_l2","made"],
+  ["mad_m4","mad_l2","made"]
+ ],
+ "enablers":[],
+ "how":"How we evidence change: baseline assessments, attendance data, coach observations, feedback from young people, individual progression records and follow-up evaluations where possible.",
+ "caveat":"Immediate outcomes are not the same as long-term ambitions. Attending sessions alone cannot be shown to reduce knife crime; what the work can show is growth in confidence, resilience, relationships, belonging and opportunity, which are protective factors.",
+ "domains":[
+  {"id":"reach","label":"Reach","d":"Unique participants, total attendances, sessions delivered and geographical coverage"},
+  {"id":"engagement","label":"Engagement","d":"Repeat attendance, programme completion and sustained participation"},
+  {"id":"development","label":"Personal development","d":"Percentage reporting improved confidence, resilience and wellbeing"},
+  {"id":"safety","label":"Safety","d":"Trusted-adult relationships, awareness of support, and safe delivery"},
+  {"id":"progression","label":"Progression","d":"Qualifications, volunteering, mentoring, paid opportunities, education and employment"},
+  {"id":"community","label":"Community impact","d":"New partnerships, community engagement, accessibility and participant feedback"}
+ ],
+ "roles":[
+  {"id":"coach","label":"Coach"},
+  {"id":"manager","label":"Programmes and Delivery Manager"},
+  {"id":"ceo","label":"Interim CEO"},
+  {"id":"comms","label":"Communications and case studies"},
+  {"id":"data","label":"Expansion and data platforms"}
+ ],
+ "indicators":[
+  {"id":"R1","domain":"reach","name":"Unique participants","tier":"core","readiness":"ready","unit":"people","direction":"up","why":"Funders ask how many people took part. Counting each person once, across every site and programme, gives a figure that holds up.","definition":"Different people who attended at least one session in the period, counted once across all sites and programmes.","source":"Upshot registers","collector":"coach","owner":"manager","frequency":"Monthly","baseline":"Unique participants are counted from Upshot registers. 20,000+ young people supported since 2017 (website).","outcomes":["O1","O3","O6"],"nodes":["o2"],"research":[]},
+  {"id":"R2","domain":"reach","name":"Total attendances by gym","tier":"next","readiness":"fix","unit":"attendances","direction":"up","why":"Shows which gyms are well attended and prompts the question of why some work better than others.","definition":"Total attendances and average per session for each gym, shown as a traffic light against that gym's target.","source":"Upshot registers","collector":"coach","owner":"manager","frequency":"Monthly","baseline":"Attendance is recorded at every session. A gym-level view is being developed.","outcomes":["O1","O3"],"nodes":["o1","o2"],"research":["X17"]},
+  {"id":"R3","domain":"reach","name":"Sessions delivered against timetable","tier":"core","readiness":"ready","unit":"%","direction":"up","why":"Shows that what was promised to funders and communities is being delivered.","definition":"Sessions that ran divided by sessions on the timetable, by site and programme. Cancellations carry a reason such as heat or weather.","source":"Upshot registers","collector":"coach","owner":"manager","frequency":"Monthly","baseline":"Timetable: 20 free sessions a week, four in each of five parks. 2025: 694 sessions delivered (293 community, 401 targeted).","outcomes":["O6"],"nodes":["o1","a1"],"research":[]},
+  {"id":"R4","domain":"reach","name":"Geographical coverage","tier":"next","readiness":"build","unit":"% by borough","direction":"up","why":"Shows which communities each gym serves, including how many people travel from outside the gym's borough.","definition":"Share of participants by borough of residence, by gym.","source":"Registration form (home postcode)","collector":"coach","owner":"manager","frequency":"Quarterly","baseline":"Home postcode is part of the new registration form; coverage is not yet reported.","outcomes":["O6"],"nodes":["o2","i1","l1"],"research":[]},
+  {"id":"R5","domain":"reach","name":"Participants with demographics recorded","tier":"core","readiness":"fix","unit":"%","direction":"up","why":"Shows who Steel Warriors reaches, including groups left out of mainstream sport.","definition":"Share of participants with age, gender, ethnicity and home postcode recorded.","source":"Registration form (QR self-registration)","collector":"coach","owner":"manager","frequency":"Monthly","baseline":"Of people registered in 2025: 43% under 18, 19% aged 18 to 25, 36% female (website). Fuller demographic capture is being introduced through QR registration.","outcomes":["O3","O6"],"nodes":["o2","l3"],"research":["X8"]},
+  {"id":"E1","domain":"engagement","name":"Repeat and sustained attendance","tier":"core","readiness":"fix","unit":"%","direction":"up","why":"Repeat attendance is the best early sign that relationships and routine are forming. Research on community exercise suggests sustained programmes work best.","definition":"Share of participants who attend again the following month, and who keep attending over three months or more. A regular participant attends three or more sessions in a month.","source":"Upshot registers (needs a participant ID)","collector":"coach","owner":"manager","frequency":"Monthly","baseline":"Attendance is already recorded in Upshot and participants can be linked to programmes. The gap is incomplete registers, duplicates and the absence of a standard repeat-participation calculation.","outcomes":["O1","O3"],"nodes":["o2","s1","m3"],"research":["X18"]},
+  {"id":"E2","domain":"engagement","name":"Programme completion","tier":"next","readiness":"fix","unit":"%","direction":"up","why":"Shows whether structured programmes keep young people engaged to the end.","definition":"Participants who complete a defined programme or stage divided by those who start, by programme.","source":"Programme records","collector":"manager","owner":"manager","frequency":"Per programme stage","baseline":"11 young people completed the Level 2 Gym Instructor qualification (Growth, Impact and Progression 2026).","outcomes":["O5"],"nodes":["o3","m4"],"research":["X6"]},
+  {"id":"P1","domain":"development","name":"Improved confidence and resilience","tier":"core","readiness":"fix","unit":"% reporting improvement","direction":"up","why":"Shows change in confidence and resilience in a form funders recognise. Self-esteem, self-efficacy and resilience are among the strongest links between activity and mental health.","definition":"Share of participants whose self-rated confidence and resilience improved between the start and end of a programme or stage, matched to the same person, supported by coach observations.","source":"Jotform baseline and endline form (QR code); coach observations","collector":"coach","owner":"manager","frequency":"Per programme stage","baseline":"Structured programme feedback already captures confidence, motivation, skills and personal change. What is planned is a consistent baseline and follow-up approach across programmes.","outcomes":["O2"],"nodes":["s2","m2"],"research":["X10","X2"]},
+  {"id":"P2","domain":"development","name":"Improved wellbeing","tier":"core","readiness":"fix","unit":"% reporting improvement","direction":"up","why":"A short, repeated rating is realistic to collect and, linked to a participant ID, shows each person's trend. It draws on the validated WEMWBS wellbeing scale that Steel Warriors already uses in adapted form.","definition":"Share of participants whose wellbeing rating improved. Collected monthly as a one-tap rating from 1 to 10 linked to a participant ID; community groups get a quarterly version by email.","source":"Jotform (QR code); email survey for community groups","collector":"coach","owner":"manager","frequency":"Monthly","baseline":"Wellbeing is already included in programme feedback, and the new membership form includes a wellbeing baseline with possible future rescoring. Collection exists, but consistent pre/post measurement is still being introduced.","outcomes":["O1"],"nodes":["m1","s2"],"research":["X9","X15"]},
+  {"id":"P3","domain":"development","name":"Belonging and positive relationships","tier":"next","readiness":"fix","unit":"% agree","direction":"up","why":"Belonging and trusted relationships are the centre of the model. Developmental relationships are linked to stronger growth and lower risk behaviour.","definition":"Share agreeing: I feel welcome here; I feel safe here; I have built positive relationships with adults and with other young people here.","source":"Adapted wellbeing survey; annual classes survey","collector":"coach","owner":"manager","frequency":"Quarterly","baseline":"The questions exist in the adapted wellbeing survey.","outcomes":["O3"],"nodes":["s1","m3"],"research":["X1","X2"]},
+  {"id":"P5","domain":"development","name":"Personal goals met","tier":"next","readiness":"build","unit":"% of goals met or progressed","direction":"up","why":"For young people with SEND and for movement programmes, success is personal progress rather than a standard benchmark.","definition":"Share of participants who met or made progress on the goals set with their coach at the start, such as strength, mobility, communication or independence.","source":"Programme goal tracking; coach observations","collector":"coach","owner":"manager","frequency":"Per programme stage","baseline":"The programme plans include goal setting in the first week. A consistent way to record and report the goals is not yet in place.","outcomes":["O1","O2"],"nodes":["bb_m2","bb_m3","mo_e2"],"research":[]},
+  {"id":"P6","domain":"development","name":"Movement and injury-prevention knowledge","tier":"next","readiness":"build","unit":"% reporting improvement","direction":"up","why":"Steel in Motion aims to build understanding of warm-up, recovery and safe progression. It measures knowledge and confidence, not injuries avoided.","definition":"Share of participants who answer more of the warm-up, recovery and injury-prevention questions correctly, or report more confidence, at the end of the programme than at the start.","source":"Baseline and end-of-programme participant questions","collector":"coach","owner":"manager","frequency":"Per programme stage","baseline":"Not yet collected. The programme plan sets out baseline and end questions.","outcomes":["O1"],"nodes":["mo_m3"],"research":[]},
+  {"id":"S1","domain":"safety","name":"Park safety checks completed","tier":"core","readiness":"ready","unit":"%","direction":"up","why":"Safe, well-maintained spaces are what make public space usable. Research finds that living near a park is not enough if it feels unsafe.","definition":"Sessions with a completed pre-session park safety check divided by sessions delivered.","source":"Jotform pre-session form","collector":"coach","owner":"manager","frequency":"Every session","baseline":"Pre-session checks are in place, with about 101 forms submitted to date.","outcomes":["O6"],"nodes":["a1","s1"],"research":["X16","X17"]},
+  {"id":"S2","domain":"safety","name":"Days from hazard report to fix","tier":"next","readiness":"ready","unit":"days","direction":"down","why":"Safe equipment is a condition of trust. Slow repairs undermine it.","definition":"Days between a hazard first being reported on the safety check and it being fixed, by gym.","source":"Jotform comments","collector":"coach","owner":"ceo","frequency":"Weekly","baseline":"Some repairs have taken six to seven weeks.","outcomes":["O6"],"nodes":["s1","a1"],"research":["X16"]},
+  {"id":"S3","domain":"safety","name":"Under-18s with consent and emergency contact on file","tier":"core","readiness":"fix","unit":"%","direction":"up","why":"A safeguarding requirement as well as a data requirement.","definition":"Participants under 18 with an emergency contact and, where media is used, the right consent recorded (parent or guardian for under 16s).","source":"Registration form; photography and filming consent form","collector":"coach","owner":"manager","frequency":"Monthly","baseline":"Emergency contact and consent are part of the current registration form.","outcomes":["O4","O6"],"nodes":["s1"],"research":[]},
+  {"id":"S4","domain":"safety","name":"Trusted adults and awareness of support","tier":"next","readiness":"build","unit":"% reporting","direction":"up","why":"A trusted adult and knowing where to turn are the protective factors that help young people make safer choices and reach early intervention.","definition":"Share of participants reporting a stronger relationship with a trusted adult and better awareness of the support available to them.","source":"Jotform baseline and endline form; mentoring and referral records","collector":"coach","owner":"manager","frequency":"Per programme stage","baseline":"Mentoring and referral records exist; participant-reported awareness of support is not yet collected.","outcomes":["O4"],"nodes":["s3","l2","m3"],"research":["X1","X13"]},
+  {"id":"S5","domain":"safety","name":"Understanding of healthy relationships, consent and online safety","tier":"next","readiness":"build","unit":"% reporting improvement","direction":"up","why":"Steel Sisters and Future Warriors teach healthy relationships, boundaries, consent and online safety. Participants' own understanding shows whether the learning lands.","definition":"Share of participants who report a better understanding of healthy relationships, boundaries, consent and online safety between the start and end of a programme.","source":"Jotform baseline and endline form","collector":"coach","owner":"manager","frequency":"Per programme stage","baseline":"Not yet collected. The programme plans cover the topics; the question is not yet in the baseline and endline form.","outcomes":["O4"],"nodes":["sis_e3","sis_m3","fw_e3"],"research":["X5"]},
+  {"id":"G1","domain":"progression","name":"Qualifications achieved","tier":"core","readiness":"fix","unit":"people","direction":"up","why":"Shows whether the pathway delivers recognised qualifications. Mentoring and employment schemes show the strongest evidence among youth activities.","definition":"People achieving a recognised qualification through Steel Futures or other programmes, with starters shown alongside.","source":"Course records","collector":"manager","owner":"manager","frequency":"Per programme stage","baseline":"11 young people completed the Level 2 Gym Instructor qualification (Growth, Impact and Progression 2026).","outcomes":["O5"],"nodes":["o3","m4"],"research":["X6"]},
+  {"id":"G2","domain":"progression","name":"Qualification success rate","tier":"next","readiness":"fix","unit":"%","direction":"up","why":"An externally quoted figure needs a calculation anyone can check.","definition":"People who passed divided by people who started, for a named cohort. Both numbers shown.","source":"Course records","collector":"manager","owner":"manager","frequency":"Per programme stage","baseline":"A 98% success rate is reported; the calculation is being documented.","outcomes":["O5"],"nodes":["o3","m4"],"research":[]},
+  {"id":"G3","domain":"progression","name":"Progression to education, work or training","tier":"core","readiness":"build","unit":"% progressing","direction":"up","why":"The clearest evidence of progression and of life chances.","definition":"Share of programme completers in work, education, training or a Steel Assistant role at 3 and 6 months.","source":"Follow-up call or message to completers","collector":"manager","owner":"manager","frequency":"Quarterly","baseline":"Destinations are not yet tracked.","outcomes":["O5"],"nodes":["m5","l4"],"research":["X6"]},
+  {"id":"G4","domain":"progression","name":"Paid work experience and paid roles","tier":"next","readiness":"build","unit":"people","direction":"up","why":"Paid experience is the step between a qualification and a job. Counting it separately shows how many people move from skills to real work.","definition":"People in paid work experience or a paid Steel Assistant role, with those who gained the qualification shown alongside.","source":"Programme records","collector":"manager","owner":"manager","frequency":"Per programme stage","baseline":"Paid work experience and sessional Steel Assistant roles exist (Growth, Impact and Progression 2026). They are not yet counted as a measure.","outcomes":["O5"],"nodes":["m5","mad_m3","mad_m4"],"research":["X6"]},
+  {"id":"C1","domain":"community","name":"Community survey: feel safe and welcome","tier":"core","readiness":"fix","unit":"% agree","direction":"up","why":"Community classes are drop-in, so a seasonal survey is the way to hear from the whole community. Neighbourhood cohesion is linked to wellbeing and to less violence.","definition":"Share of community class participants agreeing the park feels safe and welcoming, from a seasonal survey sent to everyone with an email address.","source":"Jotform seasonal survey","collector":"comms","owner":"manager","frequency":"Quarterly","baseline":"A winter survey drew about 45 responses, mainly on park use, timing and safety after dark.","outcomes":["O6","O1"],"nodes":["l1","l3"],"research":["X4","X16"]},
+  {"id":"C2","domain":"community","name":"Partnerships and partner feedback","tier":"next","readiness":"fix","unit":"score (1 to 5)","direction":"up","why":"Third-party feedback is credible evidence for funders, and partnerships show the model is trusted.","definition":"New partnerships, community engagement activity, and average partner rating after outreach and taster sessions, plus whether they would work with Steel Warriors again.","source":"Outreach and taster feedback form","collector":"coach","owner":"comms","frequency":"Per event","baseline":"A partner feedback form is in use. At one college taster, 28 of 30 young people were new to calisthenics.","outcomes":["O6"],"nodes":["i3","l1","l3"],"research":[]}
+ ],
+ "assumptions":[
+  {"link":"Free gyms to access and attendance","text":"Free, local, welcoming outdoor gyms attract and keep people, including groups who miss out on mainstream sport.","measures":["R2","R5","E1"],"research":["X14","X15","X16","X17","X8"]},
+  {"link":"Sessions to wellbeing","text":"Regular activity in a community setting improves physical and mental wellbeing.","measures":["P2","P1"],"research":["X15","X18","X10","X11","X19"]},
+  {"link":"Safe space to belonging","text":"Consistent coaches and a welcoming peer group build trust and a sense of belonging.","measures":["P3","S1","E1"],"research":["X1","X2","X14","X16"]},
+  {"link":"Belonging and relationships to reduced risk of violence","text":"Confidence, resilience, positive relationships, belonging and opportunity are protective factors that contribute to reducing vulnerability to violence and exploitation. This is a contribution: attending sessions alone cannot be shown to reduce knife crime.","measures":["S4","P3"],"research":["X4","X13","X7","X3"]},
+  {"link":"Pathway to progression","text":"Steel Works, Steel Futures and Steel Assistants turn confidence into qualifications and paid work, with mentoring alongside.","measures":["G1","G3","E2"],"research":["X6","X2"]},
+  {"link":"Specialist mentoring","text":"Young people at highest risk need trusted adults and tailored mentoring in addition to a free place to train.","measures":["S4"],"research":["X13","X5","X7"]}
+ ],
+ "resLede":"Nineteen sources are logged across two themes: relationships and belonging, and places, activity and wellbeing. Each is tagged to the map boxes it supports.",
+ "findings":[
+  {"t":"Free outdoor gyms and community exercise are linked to better wellbeing","p":"A review of 14 outdoor fitness equipment studies found more physical activity, a mental wellbeing improvement of 0.48 standard deviations and lower loneliness. A review of 57 community outdoor exercise studies found a positive average effect on health (0.47), though results varied widely between studies."},
+  {"t":"Trusted relationships and belonging protect young people","p":"The Search Institute reports that 1 in 5 young people have no developmental relationship and a further 20% have only one. The 4-H study followed more than 7,000 young people and found stronger positive youth development predicted lower risk behaviour and depression. Across 343 Chicago neighbourhoods, stronger community cohesion was linked with less violence."},
+  {"t":"Sport works best as part of wider support","p":"The Youth Endowment Fund rates sports programmes as having high potential to reduce violence, with low confidence in the evidence because it rests on six studies. It points to coaches as mentors and to sport as a way into wider support. Steel Warriors is built this way: a free safe space, trusted coaches, targeted programmes and referral routes."}
+ ],
+ "resNote":"This research does not evaluate Steel Warriors itself. It shows why the model is credible. The measures in this tracker show whether it is working.",
+ "themes":[
+  {"id":"rel","label":"Relationships and belonging"},
+  {"id":"place","label":"Places, activity and wellbeing"}
+ ],
+ "fits":[
+  {"id":"direct","label":"Direct evidence"},
+  {"id":"supporting","label":"Supporting evidence"},
+  {"id":"context","label":"Context"},
+  {"id":"measure","label":"Measurement tool"}
+ ],
+ "research":[
+  {"id":"X1","theme":"rel","fit":"supporting","org":"Search Institute","title":"Developmental Relationships","url":"https://searchinstitute.org/developmental-relationships/","find":"Five elements of developmental relationships (care, challenge, support, sharing power, expanding possibilities) are associated with stronger social-emotional growth and lower engagement in high-risk behaviours. One in five young people report no developmental relationships and another 20% only one.","limit":"About relationships in general, not community gyms.","nodes":["i2","s3","m3"]},
+  {"id":"X2","theme":"rel","fit":"supporting","org":"Tufts University","title":"4-H Study of Positive Youth Development","url":"https://sites.tufts.edu/iaryd/research/current-projects/4-h-study-of-positive-youth-development/","find":"A study of 7,000+ young people across 42 US states over eight waves found that higher positive youth development (competence, confidence, character, connection, caring) predicted greater community contribution and lower risk behaviour and depression at the next wave. Programmes combining sustained adult-youth relationships, life skills and leadership were important.","limit":"US youth programmes in general; not gyms.","nodes":["a2","a4","m2","m3"]},
+  {"id":"X3","theme":"rel","fit":"supporting","org":"PubMed Central","title":"Bowling Together: Community Social Institutions Protective Against Poor Child Mental Health","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC8259067/","find":"Among 521 mother-child pairs, each additional prosocial community institution was associated with 21% lower odds of child anxiety or depression, and additional membership organisations with 32% lower odds.","limit":"An association, not proof of cause; not about gyms.","nodes":["m3","l1"]},
+  {"id":"X4","theme":"rel","fit":"supporting","org":"Science","title":"Neighborhoods and Violent Crime: A Multilevel Study of Collective Efficacy","url":"https://www.science.org/doi/10.1126/science.277.5328.918","find":"A study of 8,782 residents in 343 Chicago neighbourhoods found that collective efficacy (social cohesion plus willingness to intervene) was linked to less violence, after controlling for individual characteristics and prior violence.","limit":"Did not evaluate gyms or show that gyms reduce violence.","nodes":["m3","l1","l2"]},
+  {"id":"X5","theme":"rel","fit":"context","org":"Youth Endowment Fund","title":"\"We're shown so little of what healthy relationships look like\"","url":"https://youthendowmentfund.org.uk/were-shown-so-little-of-what-healthy-relationships-look-like/","find":"In a survey of nearly 11,000 young people aged 13 to 17, 39% of teenagers who had been in a relationship had experienced emotional or physical abuse in the past year. Among girls who experienced abuse, 45% felt down, bad about themselves or worried a lot. Positive role models and trusted relationships are highlighted.","limit":"Shows the need; does not measure gym impact.","nodes":["i2","a2"]},
+  {"id":"X6","theme":"rel","fit":"supporting","org":"UK Youth","title":"Health, wealth and happiness - all thanks to youth work","url":"https://www.ukyouth.org/2024/04/health-wealth-and-happiness-all-thanks-to-youth-work/","find":"A government-commissioned review of 77 studies found beneficial effects of youth activities on personal, social, educational and economic outcomes, strongest and most consistent for mentoring, peer mentoring and summer employment schemes.","limit":"Outcomes depend on programme design and delivery.","nodes":["a4","m4","l4"]},
+  {"id":"X7","theme":"rel","fit":"context","org":"Youth Endowment Fund","title":"The scale of violence affecting children","url":"https://youthendowmentfund.org.uk/reports/children-violence-and-vulnerability-2025/scale-of-violence/","find":"Of nearly 11,000 young people aged 13 to 17 in England and Wales, 18% had experienced violence, 13% reported perpetrating it and 50% had witnessed it in the past year. Only 39% of those whose violence caused serious harm were offered support.","limit":"Shows the scale of need, not that gyms reduce violence.","nodes":["l2","a4"]},
+  {"id":"X8","theme":"rel","fit":"context","org":"The Children's Society","title":"The Good Childhood Report","url":"https://www.childrenssociety.org.uk/good-childhood-report","find":"A survey of 2,007 children aged 10 to 17 found 9% had low overall wellbeing. Young people described isolation and a lack of places to socialise, and 37% of parents and carers struggled to afford out-of-school activities.","limit":"Shows barriers and need, not gym impact.","nodes":["i1","a1","l3"]},
+  {"id":"X9","theme":"place","fit":"measure","org":"University of Warwick","title":"Warwick-Edinburgh Mental Wellbeing Scale (WEMWBS)","url":"https://warwick.ac.uk/services/innovations/wemwbs/","find":"A validated measure of positive mental wellbeing, available as a 14-item scale and a 7-item short version, used in population surveys, schools, healthcare and community programmes. Steel Warriors already uses an adapted version.","limit":"A measurement tool, not evidence of impact.","nodes":["m1"]},
+  {"id":"X10","theme":"place","fit":"supporting","org":"Springer Nature (IJBNPA)","title":"Physical activity and mental health: a systematic review and best-evidence synthesis of mediation and moderation studies","url":"https://link.springer.com/article/10.1186/s12966-024-01676-6","find":"A review of 247 studies found strong evidence that physical activity improves mental health through 12 mechanisms, including self-esteem, self-efficacy, resilience, social support and social connection. Programmes may work better when designed around these factors.","limit":"Explains how activity affects mental health; does not test outdoor gyms.","nodes":["m1","m2"]},
+  {"id":"X11","theme":"place","fit":"supporting","org":"British Journal of Sports Medicine","title":"Effectiveness of physical activity interventions for improving depression, anxiety and distress: an overview of systematic reviews","url":"https://bjsm.bmj.com/content/57/18/1203","find":"An overview of 97 systematic reviews covering 1,039 trials and 128,119 participants found physical activity improved depression (effect size -0.43), anxiety (-0.42) and psychological distress (-0.60) compared with usual care, with larger gains from higher-intensity activity.","limit":"Adults and mental health outcomes; not outdoor spaces or violence.","nodes":["m1"]},
+  {"id":"X12","theme":"place","fit":"context","org":"Sport England","title":"Health, wealth and happiness: the 123bn pound value of activity","url":"https://www.sportengland.org/news-and-inspiration/health-wealth-and-happiness-ps123bn-value-activity","find":"Community sport and physical activity generated an estimated 122.9 billion pounds of social value in England in 2023/24, including 106.9 billion in individual wellbeing value, with 4.38 pounds returned for every 1 pound invested.","limit":"A modelled national estimate, not measured gym impact.","nodes":["i3","l1"]},
+  {"id":"X13","theme":"place","fit":"direct","org":"Youth Endowment Fund","title":"Sports programmes (toolkit)","url":"https://youthendowmentfund.org.uk/toolkit/sports-programmes/","find":"Rates organised sports programmes as having high potential to reduce violence, with low confidence because the evidence rests on six studies of low-to-moderate quality. Coaches can act as mentors and positive role models, and sport can engage young people in wider support. Sport appears most useful as part of a wider support system.","limit":"Low-confidence evidence; sport alone is not shown to prevent violence.","nodes":["a1","a2","i2","l2","s3"]},
+  {"id":"X14","theme":"place","fit":"direct","org":"International Journal of Environmental Research and Public Health","title":"Understanding Outdoor Gyms in Public Open Spaces: A Systematic Review and Integrative Synthesis","url":"https://www.mdpi.com/1660-4601/15/4/590","find":"A review of nine studies identified five themes in outdoor gym users' experience: health, social connectedness, affordability, support, and design and promotion. Free access can reduce financial barriers, and outdoor gyms can be shared community spaces.","limit":"Mostly users' experiences and perceptions, not population-level impact.","nodes":["i1","a1","m3"]},
+  {"id":"X15","theme":"place","fit":"direct","org":"Frontiers in Public Health","title":"Effectiveness of outdoor fitness equipment intervention on health outcomes: a systematic review and meta-analysis","url":"https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1701136/full","find":"A meta-analysis of 14 studies found outdoor fitness equipment interventions were associated with more physical activity, better fitness and strength, a mental wellbeing improvement of 0.48 standard deviations, and lower depressive symptoms, stress and loneliness. Quality of life improved by 1.06 standard deviations.","limit":"A small evidence base with variation between studies.","nodes":["a1","m1","l4"]},
+  {"id":"X16","theme":"place","fit":"supporting","org":"NIHR Evidence","title":"Open spaces and a sense of belonging improve wellbeing","url":"https://evidence.nihr.ac.uk/alert/open-spaces-and-community-cohesion-improve-wellbeing/","find":"A survey of 4,319 adults in 28 areas of North West England found that access to and use of open spaces was strongly associated with wellbeing, and neighbourhood cohesion with feeling close to other people. Living near a park is not enough if it is unsafe, poorly maintained or unattractive.","limit":"Adults; an association, not proof of cause.","nodes":["i1","s1","m1","m3"]},
+  {"id":"X17","theme":"place","fit":"supporting","org":"NICE","title":"Physical activity: encouraging activity in the community (Quality statement 3: public open spaces)","url":"https://www.nice.org.uk/guidance/qs183/chapter/Quality-statement-3-Public-open-spaces","find":"Recommends that public open spaces are accessible and inclusive for all ages and abilities, safe and well maintained, designed with the community, and that use is tracked.","limit":"Guidance for local authorities, not an impact study.","nodes":["i1","s1","l3"]},
+  {"id":"X18","theme":"place","fit":"direct","org":"Health Psychology Review","title":"The effects of community-based green exercise on health, wellbeing and physical activity participation","url":"https://www.tandfonline.com/doi/pdf/10.1080/17437199.2025.2597312","find":"A review of 57 community-based outdoor activity studies found a positive effect on health compared with no exercise (pooled effect 0.47, 95% confidence interval 0.09 to 0.85), with very high variation between studies. Social opportunities were an important reason people joined and kept going. Low-cost, accessible, varied programmes designed with communities worked best; sessions of 45 to 90 minutes over 6 to 13 weeks showed promise.","limit":"Results vary widely; the duration pattern is promising, not proven.","nodes":["a1","m1","m3"]},
+  {"id":"X19","theme":"place","fit":"supporting","org":"PubMed Central","title":"Nature-based outdoor activities for mental and physical health: systematic review and meta-analysis","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC8498096/","find":"A review of nature-based outdoor activities found reductions in depressive symptoms, anxiety and negative mood, and improvements in positive mood. Evidence for physical health was less consistent.","limit":"Adults aged 18 and over; many studies had methodological limitations.","nodes":["m1"]}
+ ],
+ "foot":"Sources: Steel Warriors theory of change notes (draft); Steel Warriors website (home, classes, impact and programmes pages); programme plans (4, 8 and 12 weeks) for Steel Sisters, Future Warriors, Steel in Schools, Beyond Barriers and Steel in Motion; Growth, Impact and Progression 2026; MEL Approach (March 2025); Steel Warriors stakeholder interviews; research log of external studies. Figures are as published or reported and have not been independently verified. Research findings are summarised from the sources linked."
+}
+</script>
+
+<script>
+(function(){
+"use strict";
+var D=JSON.parse(document.getElementById("toc-data").textContent);
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+var el=function(tag,attrs,html){var e=document.createElement(tag);for(var k in (attrs||{}))e.setAttribute(k,attrs[k]);if(html!=null)e.innerHTML=html;return e;};
+var esc=function(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});};
+
+var KEY="sw-toc-v5",store={vals:{}};
+try{var raw=localStorage.getItem(KEY);if(raw)store=JSON.parse(raw);store.vals=store.vals||{};}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+
+var st={prog:"all",out:"all",scope:"core",theme:"all",fit:"all",sel:null};
+var nodeById={},stageById={},roleById={},outById={},resById={},progById={};
+D.nodes.forEach(function(n){nodeById[n.id]=n;});
+D.enablers.forEach(function(n){nodeById[n.id]=n;n.enabler=true;n.outcomes=[];});
+D.stages.forEach(function(s){stageById[s.id]=s;});
+D.roles.forEach(function(r){roleById[r.id]=r;});
+D.outcomes.forEach(function(o){outById[o.id]=o;});
+D.research.forEach(function(r){resById[r.id]=r;});
+D.programmes.forEach(function(p){progById[p.id]=p;});
+var STATUS={ready:"In place",fix:"Partly in place",build:"Planned"};
+var FITLBL={};D.fits.forEach(function(f){FITLBL[f.id]=f.label;});
+var FITORD={direct:0,supporting:1,measure:2,context:3};
+
+/* A programme-specific box can borrow the measures and research of the shared box it refines ("like"), and add its own. */
+function keys(n){return [n.id].concat(n.like||[]);}
+function indsFor(n){var k=keys(n);return D.indicators.filter(function(i){return (n.measures&&n.measures.indexOf(i.id)>=0)||k.some(function(x){return i.nodes.indexOf(x)>=0;});});}
+function researchFor(n){var k=keys(n);return D.research.filter(function(r){return (n.research&&n.research.indexOf(r.id)>=0)||k.some(function(x){return r.nodes.indexOf(x)>=0;});}).sort(function(a,b){return FITORD[a.fit]-FITORD[b.fit];});}
+
+/* Which boxes and arrows are on the map. All programmes: the shared map. A programme with its own plan: its own early, lasting and long-term outcomes replace the shared ones. */
+var E=[];
+function hasOwn(pid){return D.nodes.some(function(n){return n.prog===pid;});}
+function mapNodes(){
+  var p=st.prog,own=p!=="all"&&hasOwn(p);
+  return D.nodes.filter(function(n){
+    if(n.prog)return n.prog===p;
+    return !(own&&(n.stage==="stm"||n.stage==="mid"||n.stage==="lng"));
+  });
+}
+function setEdges(){
+  var on={};mapNodes().forEach(function(n){on[n.id]=1;});
+  E=D.edges.filter(function(e){return on[e[0]]&&on[e[1]]&&(!e[2]||e[2]===st.prog);});
+}
+function coverage(n){
+  var l=indsFor(n);
+  if(!l.length)return {lvl:0,list:l};
+  var r=l.filter(function(i){return i.readiness==="ready";}).length;
+  if(r===l.length)return {lvl:2,list:l};
+  if(r>0||l.some(function(i){return i.readiness==="fix";}))return {lvl:1,list:l};
+  return {lvl:0,list:l};
+}
+
+/* nav */
+var SEC=[["map","Theory of change"],["outcomes","Outcomes and programmes"],["measures","Measures"],["assumptions","The logic"],["research","Research"]];
+function buildNav(){
+  var n=$("#nav");SEC.forEach(function(s){var a=el("a",{href:"#"+s[0]},s[1]);a.dataset.id=s[0];n.appendChild(a);});
+  if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)$$("#nav a").forEach(function(a){a.classList.toggle("on",a.dataset.id===e.target.id);});});},{rootMargin:"-45% 0px -50% 0px"});SEC.forEach(function(s){io.observe($("#"+s[0]));});}
+}
+
+/* chips */
+function chips(host,items,key,onset){
+  var h=$(host);$$(".chip",h).forEach(function(c){c.remove();});
+  items.forEach(function(it){var b=el("button",{class:"chip",type:"button","aria-pressed":st[key]===it.id},esc(it.label));b.onclick=function(){onset(it.id);};h.appendChild(b);});
+}
+function setProg(v){
+  st.prog=v;
+  var inMap=st.sel&&mapNodes().some(function(n){return n.id===st.sel;});
+  if(st.sel&&!inMap){st.sel=null;$("#stage").classList.remove("open");}
+  renderProg();renderCols();renderProfile();renderProgTable();drawEdges();
+}
+function setOut(v){st.out=v;renderOut();applyFilter();renderMeasures();renderOutTable();}
+function renderProg(){chips("#progFilters",[{id:"all",label:"All"}].concat(D.programmes.map(function(p){return {id:p.id,label:p.label};})),"prog",setProg);}
+function renderOut(){chips("#outFilters",[{id:"all",label:"All"}].concat(D.outcomes.map(function(o){return {id:o.id,label:o.id+" "+o.chip};})),"out",setOut);}
+
+/* map */
+function buildMap(){
+  $("#need").innerHTML='<b>The need</b>'+D.need.map(function(x){return '<span class="n">'+esc(x)+'</span>';}).join("");
+  $("#resp").innerHTML='<b>Our response</b>'+D.response.map(function(x){return '<span class="n">'+esc(x)+'</span>';}).join("");
+  renderCols();
+  $("#how").textContent=D.how;$("#caveat").textContent=D.caveat;
+}
+function renderCols(){
+  setEdges();
+  var cols=$("#cols");cols.innerHTML="";var nodes=mapNodes();
+  D.stages.forEach(function(s,i){
+    var c=el("div",{class:"col"},'<h4><span>'+String(i+1).padStart(2,"0")+'</span>'+esc(s.label)+'</h4><div class="cs">'+esc(s.sub)+'</div>');
+    var k=el("div",{class:"stack"});
+    nodes.filter(function(n){return n.stage===s.id;}).forEach(function(n){k.appendChild(nodeBtn(n));});
+    c.appendChild(k);cols.appendChild(c);
+  });
+}
+function nodeBtn(n){
+  var cv=coverage(n),lab=["Measure planned","Partly measured","Measured"][cv.lvl],rs=researchFor(n);
+  var b=el("button",{class:"node",type:"button","data-id":n.id},
+    '<span class="t">'+esc(n.title)+'</span><span class="d">'+esc(n.short)+'</span>'+(n.today?'<span class="now">'+esc(n.today)+'</span>':'')+
+    '<span class="meta"><span><i class="r'+cv.lvl+'"></i>'+lab+'</span>'+(rs.length?'<span class="res">'+rs.length+' research source'+(rs.length>1?'s':'')+'</span>':'')+'</span>');
+  b.onmouseenter=function(){trace(n.id);};b.onmouseleave=untrace;b.onfocus=function(){trace(n.id);};b.onblur=untrace;b.onclick=function(){select(n.id);};
+  return b;
+}
+var edgeEls=[],tracing=null;
+function drawEdges(){
+  var svg=$("#edges"),map=$("#mapEl");if(getComputedStyle(svg).display==="none")return;
+  var mr=map.getBoundingClientRect();svg.setAttribute("viewBox","0 0 "+mr.width+" "+mr.height);
+  svg.innerHTML='<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>';
+  edgeEls=[];var R={};
+  D.nodes.forEach(function(n){var b=$('.node[data-id="'+n.id+'"]');if(!b)return;var r=b.getBoundingClientRect();R[n.id]={l:r.left-mr.left,r:r.right-mr.left,t:r.top-mr.top,b:r.bottom-mr.top,cx:(r.left+r.right)/2-mr.left,cy:(r.top+r.bottom)/2-mr.top,s:n.stage};});
+  E.forEach(function(e,idx){
+    var a=R[e[0]],b=R[e[1]];if(!a||!b)return;var d;
+    if(a.s===b.s){var up=b.cy<a.cy;d="M"+a.cx+" "+(up?a.t:a.b)+" L"+a.cx+" "+(up?b.b:b.t);}
+    else{var x1=a.r,y1=a.cy,x2=b.l-2,y2=b.cy,dx=Math.max(24,(x2-x1)/2);d="M"+x1+" "+y1+" C"+(x1+dx)+" "+y1+" "+(x2-dx)+" "+y2+" "+x2+" "+y2;}
+    var p=document.createElementNS("http://www.w3.org/2000/svg","path");p.setAttribute("d",d);p.setAttribute("class","edge");p.setAttribute("marker-end","url(#arr)");
+    svg.appendChild(p);edgeEls.push({idx:idx,el:p,e:e});
+  });
+  refreshHi();applyFilter();
+}
+function chain(id){
+  var ed={},u={},d={};
+  (function w(i,s){E.forEach(function(e,x){if(e[1]===i&&!s[e[0]]){s[e[0]]=1;ed[x]=1;w(e[0],s);}});})(id,u);
+  (function w(i,s){E.forEach(function(e,x){if(e[0]===i&&!s[e[1]]){s[e[1]]=1;ed[x]=1;w(e[1],s);}});})(id,d);
+  var nodes={};nodes[id]=1;Object.keys(u).concat(Object.keys(d)).forEach(function(k){nodes[k]=1;});return {nodes:nodes,edges:ed};
+}
+function trace(id){if(nodeById[id].enabler)return;tracing=chain(id);refreshHi();}
+function untrace(){tracing=null;refreshHi();}
+function refreshHi(){
+  var act=tracing;if(!act&&st.sel&&!nodeById[st.sel].enabler)act=chain(st.sel);
+  $$(".node").forEach(function(b){b.classList.toggle("dim",!!act&&!act.nodes[b.dataset.id]);b.classList.toggle("sel",st.sel===b.dataset.id);});
+  $$(".enab").forEach(function(b){b.classList.toggle("sel",st.sel===b.dataset.id);});
+  edgeEls.forEach(function(x){x.el.classList.toggle("on",!!act&&!!act.edges[x.idx]);x.el.classList.toggle("dim",!!act&&!act.edges[x.idx]);});
+}
+function progOK(n){
+  if(st.prog==="all"||n.prog)return true;
+  if(n.programmes)return n.programmes.indexOf(st.prog)>=0;
+  return progById[st.prog].outcomes.some(function(o){return n.outcomes.indexOf(o)>=0;});
+}
+function vis(n){return progOK(n)&&(st.out==="all"||n.outcomes.indexOf(st.out)>=0);}
+function applyFilter(){
+  $$(".node").forEach(function(b){b.classList.toggle("hide",!vis(nodeById[b.dataset.id]));});
+  edgeEls.forEach(function(x){x.el.style.opacity=(vis(nodeById[x.e[0]])&&vis(nodeById[x.e[1]]))?"":"0.08";});
+}
+
+/* panel */
+function select(id){st.sel=id;renderPanel();refreshHi();$("#stage").classList.add("open");setTimeout(drawEdges,280);if(window.innerWidth<=900)$("#panel").scrollIntoView({behavior:"smooth"});}
+function closePanel(){st.sel=null;$("#stage").classList.remove("open");refreshHi();setTimeout(drawEdges,280);}
+function renderPanel(){
+  var n=nodeById[st.sel],p=$("#panelIn");if(!n)return;
+  var h='<button class="close" type="button" aria-label="Close detail">&times;</button><div class="kick">'+esc(n.enabler?"Underpinning every stage":stageById[n.stage].label)+'</div><h3>'+esc(n.title)+'</h3>';
+  (n.outcomes||[]).forEach(function(o){h+='<span class="pill" title="'+esc(outById[o].title)+'">'+esc(outById[o].chip)+'</span>';});
+  h+=String(n.desc).split("\n\n").map(function(t){return '<p>'+esc(t)+'</p>';}).join("");
+  if(n.prog)h+='<p class="src">From the '+esc(progById[n.prog].label)+' programme.</p>';
+  if(n.wk)h+='<h5>Delivered through</h5><p>'+esc(n.wk)+'</p>';
+  if(n.see)h+='<h5>What it looks like in practice</h5><ul>'+n.see.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul>';
+  if(n.meas)h+='<h5>How this programme measures it</h5><p>'+esc(n.meas)+'</p>';
+  var pn=n.prog?[]:D.nodes.filter(function(x){return x.prog&&(x.like||[]).indexOf(n.id)>=0;});
+  if(pn.length)h+='<h5>In each programme</h5><ul>'+pn.map(function(x){return '<li><button class="linkbtn" type="button" data-pn="'+x.id+'">'+esc(progById[x.prog].label)+': '+esc(x.title)+'</button></li>';}).join("")+'</ul>';
+  if(n.today||n.facts){h+='<h5>Steel Warriors today</h5><ul>'+(n.today?'<li><b>'+esc(n.today)+'</b></li>':'')+(n.facts||[]).map(function(f){return '<li>'+esc(f)+'</li>';}).join("")+'</ul>';}
+  var inds=indsFor(n);
+  h+='<h5>How we will know</h5>';
+  h+=inds.length?'<ul>'+inds.map(function(i){return '<li><button class="linkbtn" type="button" data-ind="'+i.id+'">'+i.id+' '+esc(i.name)+'</button> <span class="pill '+i.readiness+'">'+STATUS[i.readiness]+'</span></li>';}).join("")+'</ul>':'<p>A measure for this step is planned.</p>';
+  var rs=researchFor(n);
+  h+='<h5>Research behind this</h5>';
+  h+=rs.length?'<ul class="rl">'+rs.map(function(r){return '<li><span class="pill '+r.fit+'">'+FITLBL[r.fit]+'</span><br><a href="'+esc(r.url)+'" target="_blank" rel="noopener"><b>'+esc(r.title)+'</b></a> <small style="color:var(--muted)">'+esc(r.org)+'</small><span class="fnd">'+esc(r.find)+'</span><span class="lim"><b>Limits:</b> '+esc(r.limit)+'</span></li>';}).join("")+'</ul>':'<p>No external research has been logged for this step yet.</p>';
+  if(!n.enabler){
+    var inc=E.filter(function(e){return e[1]===n.id;}),out=E.filter(function(e){return e[0]===n.id;});
+    if(inc.length)h+='<h5>Comes from</h5><ul>'+inc.map(function(e){return '<li><button class="linkbtn" type="button" data-go="'+e[0]+'">'+esc(nodeById[e[0]].title)+'</button></li>';}).join("")+'</ul>';
+    if(out.length)h+='<h5>Leads to</h5><ul>'+out.map(function(e){return '<li><button class="linkbtn" type="button" data-go="'+e[1]+'">'+esc(nodeById[e[1]].title)+'</button></li>';}).join("")+'</ul>';
+  }
+  h+='<h5>Source</h5><p>'+esc(n.source)+'</p>';
+  p.innerHTML=h;$(".close",p).onclick=closePanel;
+  $$("[data-go]",p).forEach(function(b){b.onclick=function(){select(b.dataset.go);};});
+  $$("[data-ind]",p).forEach(function(b){b.onclick=function(){gotoInd(b.dataset.ind);};});
+  $$("[data-pn]",p).forEach(function(b){b.onclick=function(){var x=nodeById[b.dataset.pn];setProg(x.prog);select(x.id);};});
+}
+
+/* programme profile: shown above the map when a programme is selected */
+function renderProfile(){
+  var host=$("#profile"),p=progById[st.prog];
+  if(!p){host.innerHTML='<div class="notice">Showing the shared theory of change for all programmes. Select a programme to see its own aim, who it is for, where it runs and the outcomes it is designed to achieve.</div>';return;}
+  var h='<div class="card"><h3>'+esc(p.label)+'</h3>'+(p.tag?'<p class="ptag">'+esc(p.tag)+'</p>':'')+'<dl class="pgrid">';
+  if(p.aim)h+='<div class="wide"><dt>Aim</dt><dd>'+esc(p.aim)+'</dd></div>';
+  if(p.who)h+='<div><dt>Who it is for</dt><dd>'+esc(p.who)+'</dd></div>';
+  if(p.lengths)h+='<div><dt>Length</dt><dd>'+esc(p.lengths)+'</dd></div>';
+  h+='<div><dt>Where and how often</dt><dd>'+esc(p.where)+'</dd></div>';
+  h+='<div><dt>With whom</dt><dd>'+esc(p.partners||"Not yet recorded.")+'</dd></div>';
+  if(p.areas)h+='<details class="wide"><summary>Outcomes the programme is designed to achieve ('+p.areas.length+')</summary><ul>'+p.areas.map(function(a){return '<li><b>'+esc(a.a)+':</b> '+esc(a.t)+'</li>';}).join("")+'</ul></details>';
+  if(p.evidence)h+='<details class="wide"><summary>How the programme measures its impact ('+p.evidence.length+')</summary><ul>'+p.evidence.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></details>';
+  h+='</dl>';
+  if(p.caveat)h+='<div class="notice">'+esc(p.caveat)+'</div>';
+  if(!hasOwn(p.id))h+='<div class="notice">The programme plan has not been received yet, so the map shows the shared outcomes. Its own early, lasting and long-term outcomes will be added from the plan.</div>';
+  if(p.src)h+='<p class="src">Source: '+esc(p.src)+'.</p>';
+  host.innerHTML=h+'</div>';
+}
+
+/* outcomes and programmes tables */
+function renderOutTable(){
+  $("#tblOut").innerHTML='<thead><tr><th>Outcome</th><th>What we want to achieve</th><th>How we measure it</th><th>Measures in the tracker</th></tr></thead><tbody>'+
+   D.outcomes.map(function(o){
+     var ms=D.indicators.filter(function(i){return i.outcomes.indexOf(o.id)>=0;});
+     return '<tr'+(st.out===o.id?' style="background:var(--red-tint)"':'')+'><td><button class="linkbtn" type="button" data-out="'+o.id+'"><b>'+o.id.slice(1)+'. '+esc(o.title)+'</b></button></td><td>'+esc(o.want)+'</td><td class="m">'+esc(o.how)+'</td><td>'+ms.map(function(i){return '<button class="refchip" type="button" data-ind="'+i.id+'" title="'+esc(i.name)+'">'+i.id+'</button>';}).join("")+'</td></tr>';
+   }).join("")+'</tbody>';
+  $$("[data-out]",$("#tblOut")).forEach(function(b){b.onclick=function(){setOut(st.out===b.dataset.out?"all":b.dataset.out);if(st.out!=="all")$("#map").scrollIntoView();};});
+  $$("[data-ind]",$("#tblOut")).forEach(function(b){b.onclick=function(){gotoInd(b.dataset.ind);};});
+}
+function renderProgTable(){
+  $("#tblProg").innerHTML='<thead><tr><th>Programme</th><th>What it aims to do</th><th>Primary organisational outcomes</th><th>Where and how often</th><th>Partners</th></tr></thead><tbody>'+
+   D.programmes.map(function(p){return '<tr'+(st.prog===p.id?' style="background:var(--red-tint)"':'')+'><td><button class="linkbtn" type="button" data-prog="'+p.id+'"><b>'+esc(p.label)+'</b></button></td><td>'+esc(p.aim||p.contributes)+'</td><td>'+esc(p.contributes)+'<br>'+p.outcomes.map(function(o){return '<span class="pill" title="'+esc(outById[o].title)+'">'+o+'</span>';}).join("")+'</td><td class="m">'+esc(p.where)+'</td><td class="m">'+esc(p.partners||"")+'</td></tr>';}).join("")+'</tbody>';
+  $$("[data-prog]",$("#tblProg")).forEach(function(b){b.onclick=function(){setProg(st.prog===b.dataset.prog?"all":b.dataset.prog);if(st.prog!=="all")$("#map").scrollIntoView();};});
+}
+
+/* measures */
+function renderScope(){
+  var nCore=D.indicators.filter(function(i){return i.tier==="core";}).length;
+  chips("#scopeFilters",[{id:"core",label:"Core ("+nCore+")"},{id:"all",label:"All ("+D.indicators.length+")"}],"scope",function(v){st.scope=v;renderScope();renderMeasures();});
+}
+function indVisible(i){return (st.scope==="all"||i.tier==="core")&&(st.out==="all"||i.outcomes.indexOf(st.out)>=0);}
+function renderMeasures(){
+  var host=$("#inds"),open={};$$(".ind",host).forEach(function(a){if(!$(".ind-body",a).hidden)open[a.dataset.id]=1;});
+  host.innerHTML="";host.className="tiles";var shown=0;
+  D.domains.forEach(function(dm){
+    var list=D.indicators.filter(function(i){return i.domain===dm.id&&indVisible(i);});if(!list.length)return;
+    var tile=el("section",{class:"tile"},'<div class="tile-h"><h3>'+esc(dm.label)+' ('+list.length+')</h3><p>'+esc(dm.d)+'</p></div>');
+    list.forEach(function(i){tile.appendChild(indCard(i,!!open[i.id]));shown++;});
+    host.appendChild(tile);
+  });
+  $("#indCount").textContent="Showing "+shown+" of "+D.indicators.length+" measures"+(st.out!=="all"?" for outcome "+st.out+": "+outById[st.out].chip:"")+".";
+  if(!shown)host.innerHTML='<p class="lede">No measures match this filter.</p>';
+}
+function refChips(ids){return ids.map(function(x){return '<button class="refchip" type="button" data-ref="'+x+'" title="'+esc(resById[x].title)+'">'+x+'</button>';}).join("");}
+function wireRefs(root){$$("[data-ref]",root).forEach(function(b){b.onclick=function(){gotoRef(b.dataset.ref);};});}
+function indCard(i,isOpen){
+  var a=el("article",{class:"ind "+i.tier,id:"ind-"+i.id});a.dataset.id=i.id;
+  a.innerHTML='<div class="ind-row"><button class="ind-head" type="button" aria-expanded="'+isOpen+'"><span class="ind-id">'+i.id+'</span><span class="ind-name">'+esc(i.name)+'</span>'+
+   (i.tier==="core"?'<span class="pill core">Core</span>':'')+'<span class="pill '+i.readiness+'">'+STATUS[i.readiness]+'</span><span class="ind-caret">'+(isOpen?"Hide":"Detail")+'</span></button>'+
+   '</div>'+
+   '<dl class="ind-body" '+(isOpen?'':'hidden')+'><div class="wide"><dt>Why it matters</dt><dd>'+esc(i.why)+'</dd></div>'+
+   '<div><dt>Definition</dt><dd>'+esc(i.definition)+'</dd></div>'+
+   '<div><dt>Where we are today</dt><dd>'+esc(i.baseline)+'</dd></div>'+
+   '<div><dt>Source and routine</dt><dd>'+esc(i.source)+'. Collected by '+esc(roleById[i.collector].label.toLowerCase())+', '+esc(i.frequency.toLowerCase())+'. Accountable: '+esc(roleById[i.owner].label)+'.</dd></div>'+
+   '<div><dt>Outcomes</dt><dd>'+i.outcomes.map(function(o){return '<span class="pill" title="'+esc(outById[o].title)+'">'+o+'</span>';}).join("")+'</dd></div>'+
+   (i.research&&i.research.length?'<div><dt>Research</dt><dd>'+refChips(i.research)+'</dd></div>':'')+'</dl>';
+  var hd=$(".ind-head",a),bd=$(".ind-body",a);
+  hd.onclick=function(){var o=bd.hidden;bd.hidden=!o;hd.setAttribute("aria-expanded",o);$(".ind-caret",a).textContent=o?"Hide":"Detail";};
+  wireRefs(a);return a;
+}
+function gotoInd(id){
+  var i=D.indicators.filter(function(x){return x.id===id;})[0];
+  if(st.out!=="all"||(st.scope==="core"&&i.tier!=="core")){st.out="all";st.scope="all";renderOut();renderScope();applyFilter();renderMeasures();renderOutTable();}
+  var a=$("#ind-"+id);if(!a)return;if($(".ind-body",a).hidden)$(".ind-head",a).click();
+  a.scrollIntoView({behavior:"smooth",block:"center"});a.classList.add("hl");setTimeout(function(){a.classList.remove("hl");},1800);
+}
+function csvCell(v){v=String(v==null?"":v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
+function exportCsv(){
+  var rows=[["ID","Measure","Domain","Priority","Status","Unit","Where we are today","Source","Collected by","Frequency","Accountable"]];
+  D.indicators.forEach(function(i){rows.push([i.id,i.name,D.domains.filter(function(d){return d.id===i.domain;})[0].label,i.tier==="core"?"Core":"Next",STATUS[i.readiness],i.unit,i.baseline,i.source,roleById[i.collector].label,i.frequency,roleById[i.owner].label]);});
+  var csv=rows.map(function(r){return r.map(csvCell).join(",");}).join("\r\n");
+  try{var blob=new Blob(["﻿"+csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="steel-warriors-measures.csv";document.body.appendChild(a);a.click();a.remove();}
+  catch(e){window.prompt("Copy this CSV",csv);}
+}
+
+/* assumptions + research */
+function buildAssump(){
+  $("#tblAssump").innerHTML='<thead><tr><th>Link</th><th>What has to be true</th><th>How we will know</th><th>Research</th></tr></thead><tbody>'+
+   D.assumptions.map(function(a){return '<tr><td><b>'+esc(a.link)+'</b></td><td>'+esc(a.text)+'</td><td>'+a.measures.map(function(m){return '<button class="refchip" type="button" data-ind="'+m+'">'+m+'</button>';}).join("")+'</td><td>'+refChips(a.research)+'</td></tr>';}).join("")+'</tbody>';
+  wireRefs($("#tblAssump"));
+  $$("[data-ind]",$("#tblAssump")).forEach(function(b){b.onclick=function(){gotoInd(b.dataset.ind);};});
+}
+function renderThemeFilters(){chips("#themeFilters",[{id:"all",label:"All"}].concat(D.themes),"theme",function(v){st.theme=v;renderThemeFilters();renderCards();});}
+function renderFitFilters(){chips("#fitFilters",[{id:"all",label:"All"}].concat(D.fits),"fit",function(v){st.fit=v;renderFitFilters();renderCards();});}
+function renderCards(){
+  var host=$("#cards");host.innerHTML="";var n=0;
+  D.research.filter(function(r){return (st.theme==="all"||r.theme===st.theme)&&(st.fit==="all"||r.fit===st.fit);}).forEach(function(r){
+    var c=el("article",{class:"src-card "+r.fit,id:"res-"+r.id});
+    c.innerHTML='<span class="pill '+r.fit+'">'+FITLBL[r.fit]+'</span><span class="pill">'+esc(D.themes.filter(function(t){return t.id===r.theme;})[0].label)+'</span>'+
+      '<h4><a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(r.title)+'</a></h4><div class="org">'+esc(r.org)+' &middot; '+r.id+'</div>'+
+      '<p>'+esc(r.find)+'</p><div class="lim"><b>Limits:</b> '+esc(r.limit)+'</div>'+
+      '<div class="sup">Supports: '+r.nodes.map(function(x){return '<button class="linkbtn" type="button" data-node="'+x+'">'+esc(nodeById[x].title)+'</button>';}).join(", ")+'</div>';
+    $$("[data-node]",c).forEach(function(b){b.onclick=function(){$("#map").scrollIntoView();setTimeout(function(){select(b.dataset.node);},350);};});
+    host.appendChild(c);n++;
+  });
+  $("#resCount").textContent="Showing "+n+" of "+D.research.length+" sources.";
+}
+function gotoRef(id){
+  if(st.theme!=="all"||st.fit!=="all"){st.theme="all";st.fit="all";renderThemeFilters();renderFitFilters();renderCards();}
+  var c=$("#res-"+id);if(!c)return;c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("hl");setTimeout(function(){c.classList.remove("hl");},2000);
+}
+
+/* boot */
+function boot(){
+  $("#stmt").textContent=D.statement;$("#stmt2").textContent=D.statement2;
+  $("#facts").innerHTML=D.facts.map(function(f){return '<div class="fact"><b>'+esc(f.n)+'</b><span>'+esc(f.t)+'</span></div>';}).join("");
+  $("#factsrc").textContent=D.factsrc;
+  $("#resLede").textContent=D.resLede;
+  $("#findings").innerHTML=D.findings.map(function(f){return '<div class="card"><h3>'+esc(f.t)+'</h3><p>'+esc(f.p)+'</p></div>';}).join("");
+  $("#resNote").textContent=D.resNote;$("#foot").textContent=D.foot;
+  buildNav();renderProg();renderOut();buildMap();renderProfile();renderOutTable();renderProgTable();renderScope();renderMeasures();buildAssump();renderThemeFilters();renderFitFilters();renderCards();
+  $("#exportCsv").onclick=exportCsv;
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&st.sel)closePanel();});
+  var rz;window.addEventListener("resize",function(){clearTimeout(rz);rz=setTimeout(drawEdges,80);});
+  drawEdges();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawEdges);
+  window.addEventListener("load",drawEdges);
+}
+boot();
+})();
+</script>
+</body>
+</html>
